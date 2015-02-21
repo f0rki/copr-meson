@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.22.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -13,6 +13,7 @@ BuildRequires:  python3-devel ninja-build
 # Test deps
 #BuildRequires:  boost-devel protobuf-devel gobject-introspection-devel
 #BuildRequires:  gettext-devel
+Requires:       ninja-build
 Requires:       python3-qt5
 
 %description
@@ -44,6 +45,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}*.1.*
 
 %changelog
+* Sat Feb 21 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-3
+- Add ninja-build to requires
+
 * Thu Jan 22 2015 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.22.0-2
 - fix shebang in python files
 
