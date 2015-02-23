@@ -1,13 +1,16 @@
 %global __python %{__python3}
+%global commit c6dbf98a055bb0fe1d36fc9f4f757b67ca613f01
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           meson
 Version:        0.22.0
-Release:        3%{?dist}
+Release:        4.git.%{shortcommit}%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
-Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
+#Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{version}-%{shortcommit}.tar.gz
 
 BuildRequires:  python3-devel ninja-build
 # Test deps
@@ -23,7 +26,7 @@ support for modern software development tools and practices, such as
 unit tests, coverage reports, Valgrind, CCache and the like.
 
 %prep
-%setup -q
+%setup -qn %{name}-%{commit}
 
 %build
 # Nothing to build
@@ -45,6 +48,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}*.1.*
 
 %changelog
+* Mon Feb 23 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-4.git.c6dbf98
+- Use development version
+
 * Sat Feb 21 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-3
 - Add ninja-build to requires
 
