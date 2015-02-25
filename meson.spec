@@ -4,13 +4,14 @@
 
 Name:           meson
 Version:        0.22.0
-Release:        4.git.%{shortcommit}%{?dist}
+Release:        5.git%{shortcommit}%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
 #Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
-Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{version}-%{shortcommit}.tar.gz
+Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
 # Test deps
@@ -48,6 +49,10 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}*.1.*
 
 %changelog
+* Thu Feb 26 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-5.gitc6dbf98
+- Fix packaging style
+- Make package noarch
+
 * Mon Feb 23 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-4.git.c6dbf98
 - Use development version
 
