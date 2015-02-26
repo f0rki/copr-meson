@@ -1,10 +1,10 @@
 %global __python %{__python3}
-%global commit c6dbf98a055bb0fe1d36fc9f4f757b67ca613f01
+%global commit 75818950f84e6eb29790d7bdc47445b529143008
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           meson
 Version:        0.22.0
-Release:        5.git%{shortcommit}%{?dist}
+Release:        6.git%{shortcommit}%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -15,10 +15,22 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
 # Test deps
-#BuildRequires:  boost-devel protobuf-devel gobject-introspection-devel
-#BuildRequires:  gettext-devel
+BuildRequires:  gcc-gfortran gcc-objc gcc-objc++ java-devel
+BuildRequires:  boost-devel
+BuildRequires:  gtest-devel
+BuildRequires:  gmock-devel
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  vala
+#BuildRequires:  wxGTK3-devel
+BuildRequires:  flex bison
+BuildRequires:  gettext
+BuildRequires:  gnustep-base-devel
+BuildRequires:  git
+#BuildRequires:  pkgconfig(protobuf)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gobject-introspection-1.0)
+BuildRequires:  pkgconfig(zlib)
 Requires:       ninja-build
-Requires:       python3-qt5
 
 %description
 Meson is a build system designed to optimize programmer
@@ -26,8 +38,21 @@ productivity. It aims to do this by providing simple, out-of-the-box
 support for modern software development tools and practices, such as
 unit tests, coverage reports, Valgrind, CCache and the like.
 
+%package gui
+Summary:        GUI for high productivity build system
+
+Requires:       %{name} = %{version}-%{release}
+Requires:       python3-qt5
+
+%description gui
+GUI for high productivity build system.
+
 %prep
 %setup -qn %{name}-%{commit}
+# wxGTK3 broken
+rm -rf "test cases/frameworks/9 wxwidgets/"
+# protobuf broken
+rm -rf "test cases/frameworks/5 protocol buffers/"
 
 %build
 # Nothing to build
@@ -39,16 +64,32 @@ sed -i '1{\@^#!/usr/bin/python@d}' %{buildroot}%{_datadir}/%{name}/mparser.py
 chmod +x %{buildroot}%{_bindir}/meson*
 
 %check
-# Disable now, because not all deps in repo
-#./run_tests.py
+./run_tests.py
 
 %files
 %license COPYING
-%{_bindir}/%{name}*
-%{_datadir}/%{name}/
-%{_mandir}/man1/%{name}*.1.*
+%{_bindir}/%{name}
+%{_bindir}/%{name}conf
+%dir %{_datadir}/%{name}/
+%exclude /*.ui
+%exclude /mesongui.py
+%{_datadir}/%{name}/*
+%{_mandir}/man1/%{name}.1.*
+%{_mandir}/man1/%{name}conf.1.*
+
+%files gui
+%license COPYING
+%{_bindir}/%{name}gui
+%{_datadir}/%{name}/*.ui
+%{_datadir}/%{name}/mesongui.py
+%{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Thu Feb 26 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-6.git
+- split gui to subpkg
+- update to latest snapshot
+- enable tests
+
 * Thu Feb 26 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-5.gitc6dbf98
 - Fix packaging style
 - Make package noarch
