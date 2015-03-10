@@ -1,10 +1,11 @@
 %global __python %{__python3}
-%global commit 75818950f84e6eb29790d7bdc47445b529143008
+%global commit f9f51b1ac7f86ed4be78ea830a414ec0c27fb044
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+%global date 20150310
 
 Name:           meson
 Version:        0.22.0
-Release:        6.git%{shortcommit}%{?dist}
+Release:        7.%{date}git%{shortcommit}%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -21,7 +22,7 @@ BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  vala
-#BuildRequires:  wxGTK3-devel
+BuildRequires:  wxGTK3-devel
 BuildRequires:  flex bison
 BuildRequires:  gettext
 BuildRequires:  gnustep-base-devel
@@ -49,8 +50,6 @@ GUI for high productivity build system.
 
 %prep
 %setup -qn %{name}-%{commit}
-# wxGTK3 broken
-rm -rf "test cases/frameworks/9 wxwidgets/"
 # protobuf broken
 rm -rf "test cases/frameworks/5 protocol buffers/"
 
@@ -85,7 +84,11 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
-* Thu Feb 26 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-6.git
+* Tue Mar 10 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150310gitf9f51b1
+- today's git snapshot with support for cool GNOME features
+- re-enable wxGTK3 tests, package fixed in rawhide
+
+* Thu Feb 26 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-6.git7581895
 - split gui to subpkg
 - update to latest snapshot
 - enable tests
