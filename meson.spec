@@ -1,7 +1,7 @@
 %global __python %{__python3}
-%global commit f9f51b1ac7f86ed4be78ea830a414ec0c27fb044
+%global commit fa2c659825031c599f59e0a863e8266614e6756f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date 20150310
+%global date 20150316
 
 Name:           meson
 Version:        0.22.0
@@ -84,6 +84,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Mon Mar 16 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150316gitfa2c659
+- update to latest git
+
 * Tue Mar 10 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150310gitf9f51b1
 - today's git snapshot with support for cool GNOME features
 - re-enable wxGTK3 tests, package fixed in rawhide
