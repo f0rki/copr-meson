@@ -1,7 +1,7 @@
 %global __python %{__python3}
-%global commit fa2c659825031c599f59e0a863e8266614e6756f
+%global commit a084a8ec3ec12e91c3897dc6b805636be6d36527
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date 20150316
+%global date 20150321
 
 Name:           meson
 Version:        0.22.0
@@ -12,6 +12,8 @@ License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
 #Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
 Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+# https://github.com/jpakkane/meson/pull/57
+Patch0:         0001-install-install-rpm-macros-if-RPM-bin-in-system.-Clo.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
@@ -49,7 +51,7 @@ Requires:       python3-qt5
 GUI for high productivity build system.
 
 %prep
-%setup -qn %{name}-%{commit}
+%autosetup -n %{name}-%{commit}
 # protobuf broken
 rm -rf "test cases/frameworks/5 protocol buffers/"
 
@@ -70,11 +72,12 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_bindir}/%{name}
 %{_bindir}/%{name}conf
 %dir %{_datadir}/%{name}/
-%exclude /*.ui
-%exclude /mesongui.py
+%exclude %{_datadir}/%{name}/*.ui
+%exclude %{_datadir}/%{name}/mesongui.py
 %{_datadir}/%{name}/*
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}conf.1.*
+%{_rpmconfigdir}/macros.d/macros.%{name}
 
 %files gui
 %license COPYING
@@ -84,6 +87,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Sat Mar 21 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150321gita084a8e
+- update to latest git
+
 * Mon Mar 16 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150316gitfa2c659
 - update to latest git
 
