@@ -1,7 +1,7 @@
 %global __python %{__python3}
-%global commit a084a8ec3ec12e91c3897dc6b805636be6d36527
+%global commit 78d31cafd73ef7df0e842efc822a8778fe4f9761
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date 20150321
+%global date 20150322
 
 Name:           meson
 Version:        0.22.0
@@ -12,8 +12,6 @@ License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
 #Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
 Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
-# https://github.com/jpakkane/meson/pull/57
-Patch0:         0001-install-install-rpm-macros-if-RPM-bin-in-system.-Clo.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
@@ -87,6 +85,10 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Sun Mar 22 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150322git78d31ca
+- update to latest git
+- fix tests on arm
+
 * Sat Mar 21 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150321gita084a8e
 - update to latest git
 
