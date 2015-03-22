@@ -16,7 +16,7 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
 # Test deps
-BuildRequires:  gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core
+BuildRequires:  gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core mono-devel
 BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
