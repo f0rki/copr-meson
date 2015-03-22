@@ -5,7 +5,7 @@
 
 Name:           meson
 Version:        0.22.0
-Release:        7.%{date}git%{shortcommit}%{?dist}
+Release:        8.%{date}git%{shortcommit}%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -16,7 +16,7 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
 # Test deps
-BuildRequires:  gcc-gfortran gcc-objc gcc-objc++ java-devel
+BuildRequires:  gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core
 BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
@@ -85,6 +85,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Sun Mar 22 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-8.20150322git78d31ca
+- Enable C# tests
+
 * Sun Mar 22 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-7.20150322git78d31ca
 - update to latest git
 - fix tests on arm
