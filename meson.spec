@@ -5,7 +5,7 @@
 
 Name:           meson
 Version:        0.22.0
-Release:        8.%{date}git%{shortcommit}%{?dist}
+Release:        9.%{date}git%{shortcommit}%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -72,6 +72,7 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %dir %{_datadir}/%{name}/
 %exclude %{_datadir}/%{name}/*.ui
 %exclude %{_datadir}/%{name}/mesongui.py
+%exclude %{_datadir}/%{name}/__pycache__/mesongui.*
 %{_datadir}/%{name}/*
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}conf.1.*
@@ -82,9 +83,13 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_bindir}/%{name}gui
 %{_datadir}/%{name}/*.ui
 %{_datadir}/%{name}/mesongui.py
+%{_datadir}/%{name}/__pycache__/mesongui.*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Mon Mar 23 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-9.20150322git78d31ca
+- Fix filelists for mesongui (python-bytecode-without-source)
+
 * Sun Mar 22 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-8.20150322git78d31ca
 - Enable C# tests
 
