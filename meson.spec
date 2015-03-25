@@ -1,7 +1,7 @@
 %global __python %{__python3}
-%global commit 78d31cafd73ef7df0e842efc822a8778fe4f9761
+%global commit 18550fed5e3c6494efa7425fcfdcb1bb6f53b7f8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date 20150322
+%global date 20150325
 
 Name:           meson
 Version:        0.22.0
@@ -69,6 +69,7 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %license COPYING
 %{_bindir}/%{name}
 %{_bindir}/%{name}conf
+%{_bindir}/%{name}introspect
 %dir %{_datadir}/%{name}/
 %exclude %{_datadir}/%{name}/*.ui
 %exclude %{_datadir}/%{name}/mesongui.py
@@ -76,6 +77,7 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_datadir}/%{name}/*
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}conf.1.*
+%{_mandir}/man1/%{name}introspect.1.*
 %{_rpmconfigdir}/macros.d/macros.%{name}
 
 %files gui
@@ -87,6 +89,10 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Mon Mar 23 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-9.20150325git18550fe
+- Update to latest git
+- Include mesonintrospect
+
 * Mon Mar 23 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-9.20150322git78d31ca
 - Fix filelists for mesongui (python-bytecode-without-source)
 
