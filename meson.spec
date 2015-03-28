@@ -1,7 +1,7 @@
 %global __python %{__python3}
-%global commit 18550fed5e3c6494efa7425fcfdcb1bb6f53b7f8
+%global commit 3b49b7106b281816fdf99f9d4361e5de0167ead3
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date 20150325
+%global date 20150328
 
 Name:           meson
 Version:        0.22.0
@@ -89,6 +89,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Sat Mar 28 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-9.20150328git3b49b71
+- Update to latest git
+
 * Mon Mar 23 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-9.20150325git18550fe
 - Update to latest git
 - Include mesonintrospect
