@@ -1,17 +1,13 @@
 %global __python %{__python3}
-%global commit 3b49b7106b281816fdf99f9d4361e5de0167ead3
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date 20150328
 
 Name:           meson
-Version:        0.22.0
-Release:        9.%{date}git%{shortcommit}%{?dist}
+Version:        0.23.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
-#Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
-Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
@@ -89,6 +85,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Tue Mar 31 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.23.0-1
+- 0.23.0
+
 * Sat Mar 28 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.22.0-9.20150328git3b49b71
 - Update to latest git
 
