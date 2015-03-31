@@ -45,7 +45,7 @@ Requires:       python3-qt5
 GUI for high productivity build system.
 
 %prep
-%autosetup -n %{name}-%{commit}
+%autosetup
 # protobuf broken
 rm -rf "test cases/frameworks/5 protocol buffers/"
 
