@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.23.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -28,6 +28,7 @@ BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(zlib)
 Requires:       ninja-build
+Requires:       python3
 
 %description
 Meson is a build system designed to optimize programmer
@@ -85,6 +86,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Wed Apr 29 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.23.0-2
+- Add python3 to Requires (Thanks to Ilya Kyznetsov)
+
 * Tue Mar 31 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.23.0-1
 - 0.23.0
 
