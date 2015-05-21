@@ -21,7 +21,7 @@ BuildRequires:  gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core mono-devel
 BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
-BuildRequires:  qt5-qtbase-devel
+#BuildRequires:  qt5-qtbase-devel
 BuildRequires:  vala
 BuildRequires:  wxGTK3-devel
 BuildRequires:  flex bison
@@ -52,6 +52,8 @@ GUI for high productivity build system.
 
 %prep
 %autosetup -n %{name}-%{commit}
+# Temporary disable qt5 tests
+rm -rf "test cases/frameworks/4 qt5/"
 
 %build
 # Nothing to build
