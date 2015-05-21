@@ -1,6 +1,6 @@
 %global __python %{__python3}
 
-%global commit 0ba1d54
+%global commit 0ba1d545afe021e09090f434d5242ae942e7d5b4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global date 20150521
 
