@@ -52,8 +52,6 @@ GUI for high productivity build system.
 
 %prep
 %autosetup
-# protobuf broken
-rm -rf "test cases/frameworks/5 protocol buffers/"
 
 %build
 # Nothing to build
