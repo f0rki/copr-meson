@@ -51,7 +51,7 @@ Requires:       python3-qt5
 GUI for high productivity build system.
 
 %prep
-%autosetup
+%autosetup -n %{name}-%{commit}
 
 %build
 # Nothing to build
