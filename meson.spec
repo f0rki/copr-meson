@@ -28,7 +28,7 @@ BuildRequires:  flex bison
 BuildRequires:  gettext
 BuildRequires:  gnustep-base-devel
 BuildRequires:  git
-#BuildRequires:  pkgconfig(protobuf)
+BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  pkgconfig(zlib)
