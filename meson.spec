@@ -2,12 +2,14 @@
 
 Name:           meson
 Version:        0.23.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
 Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
+# https://github.com/jpakkane/meson/commit/0ba1d545afe021e09090f434d5242ae942e7d5b4
+Patch0:         0001-Accept-.S-files-as-assembler-too.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
@@ -86,6 +88,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Thu May 21 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.23.0-3
+- Add patch to accept .S files
+
 * Wed Apr 29 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.23.0-2
 - Add python3 to Requires (Thanks to Ilya Kyznetsov)
 
