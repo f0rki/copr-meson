@@ -1,18 +1,12 @@
 %global __python %{__python3}
 
-#global commit 0ba1d545afe021e09090f434d5242ae942e7d5b4
-#global shortcommit %(c=%{commit}; echo ${c:0:7})
-#global date 20150521
-
 Name:           meson
 Version:        0.24.0
-#Release:        1.%{date}git%{shortcommit}%{?dist}
 Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
-#Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
