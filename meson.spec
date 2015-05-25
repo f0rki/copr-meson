@@ -1,27 +1,28 @@
 %global __python %{__python3}
 
-%global commit 0ba1d545afe021e09090f434d5242ae942e7d5b4
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global date 20150521
+#%global commit 0ba1d545afe021e09090f434d5242ae942e7d5b4
+#%global shortcommit %(c=%{commit}; echo ${c:0:7})
+#%global date 20150521
 
 Name:           meson
-Version:        0.23.0
-Release:        3.%{date}git%{shortcommit}%{?dist}
+Version:        0.24.0
+#Release:        1.%{date}git%{shortcommit}%{?dist}
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://jpakkane.github.io/meson/
-#Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
-Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+#Source0:        https://github.com/jpakkane/meson/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
+Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
 # Test deps
-BuildRequires:  gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core mono-devel
+BuildRequires:  gcc gcc-c++ gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core mono-devel
 BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
-#BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qtbase-devel
 BuildRequires:  vala
 BuildRequires:  wxGTK3-devel
 BuildRequires:  flex bison
@@ -52,8 +53,6 @@ GUI for high productivity build system.
 
 %prep
 %autosetup -n %{name}-%{commit}
-# Temporary disable qt5 tests
-rm -rf "test cases/frameworks/4 qt5/"
 
 %build
 # Nothing to build
@@ -91,6 +90,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Mon May 25 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.24.0-1
+- Update to 0.24.0
+
 * Thu May 21 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.23.0-3.20150328git0ba1d54
 - Update to latest git
 
