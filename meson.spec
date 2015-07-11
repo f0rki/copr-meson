@@ -6,7 +6,7 @@ Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
-URL:            http://mesonbuild.com/meson/
+URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
