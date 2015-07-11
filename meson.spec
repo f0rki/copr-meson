@@ -2,12 +2,12 @@
 
 Name:           meson
 Version:        0.24.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
-URL:            https://jpakkane.github.io/meson/
-Source0:        https://github.com/jpakkane/meson/archive/%{version}/%{name}-%{version}.tar.gz
+URL:            http://mesonbuild.com/meson/
+Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel ninja-build
@@ -84,6 +84,9 @@ chmod +x %{buildroot}%{_bindir}/meson*
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Sat Jul 11 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.24.0-3
+- Update URLs
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.24.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
