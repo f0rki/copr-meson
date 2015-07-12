@@ -62,6 +62,7 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_bindir}/%{name}
 %{_bindir}/%{name}conf
 %{_bindir}/%{name}introspect
+%{_bindir}/wraptool
 %dir %{_datadir}/%{name}/
 %exclude %{_datadir}/%{name}/*.ui
 %exclude %{_datadir}/%{name}/mesongui.py
@@ -70,6 +71,7 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}conf.1.*
 %{_mandir}/man1/%{name}introspect.1.*
+%{_mandir}/man1/wraptool.1.*
 %{_rpmconfigdir}/macros.d/macros.%{name}
 
 %files gui
