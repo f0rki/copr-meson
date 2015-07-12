@@ -1,8 +1,8 @@
 %global __python %{__python3}
 
 Name:           meson
-Version:        0.24.0
-Release:        3%{?dist}
+Version:        0.25.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -81,6 +81,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Sun Jul 12 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.25.0-1
+- 0.25.0
+
 * Sat Jul 11 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.24.0-3
 - Update URLs
 - drop unneded hacks in install section
