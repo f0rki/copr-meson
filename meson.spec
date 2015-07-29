@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.25.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -83,6 +83,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Wed Jul 29 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.25.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Changes/F23Boost159
+
 * Wed Jul 22 2015 David Tardon <dtardon@redhat.com> - 0.25.0-2
 - rebuild for Boost 1.58
 
