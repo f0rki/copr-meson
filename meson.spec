@@ -25,7 +25,7 @@ BuildRequires:  gnustep-base-devel
 BuildRequires:  git
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gobject-introspection-1.0)
+BuildRequires:  pkgconfig(gobject-introspection-1.0) python3-gobject-base gtk-doc
 BuildRequires:  pkgconfig(zlib)
 Requires:       ninja-build
 Requires:       python3
