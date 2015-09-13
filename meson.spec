@@ -1,8 +1,8 @@
 %global __python %{__python3}
 
 Name:           meson
-Version:        0.25.0
-Release:        4%{?dist}
+Version:        0.26.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -83,6 +83,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Sun Sep 13 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.26.0-1
+- 0.26.0
+
 * Thu Aug 27 2015 Jonathan Wakely <jwakely@redhat.com> - 0.25.0-4
 - Rebuilt for Boost 1.59
 
