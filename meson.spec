@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.28.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -83,6 +83,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_mandir}/man1/%{name}gui.1.*
 
 %changelog
+* Fri Jan 15 2016 Jonathan Wakely <jwakely@redhat.com> - 0.28.0-2
+- Rebuilt for Boost 1.60
+
 * Mon Dec 28 2015 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.28.0-1
 - 0.28.0
 
