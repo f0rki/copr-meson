@@ -50,7 +50,7 @@ GUI for high productivity build system.
 
 %install
 %py3_install
-install -Dpm 0644 data/macros.%{name} %{_rpmconfigdir}/macros.d/macros.%{name}
+install -Dpm 0644 data/macros.%{name} %{buildroot}%{_rpmconfigdir}/macros.d/macros.%{name}
 
 %check
 MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
