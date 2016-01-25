@@ -10,7 +10,9 @@ URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  python3-devel ninja-build
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  ninja-build
 # Test deps
 BuildRequires:  gcc gcc-c++ gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core mono-devel
 BuildRequires:  boost-devel
@@ -67,6 +69,7 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %exclude %{python3_sitelib}/%{libname}/__pycache__/mgui.*
 %exclude %{python3_sitelib}/%{libname}/mgui.py
 %{python3_sitelib}/%{libname}/
+%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}conf.1.*
 %{_mandir}/man1/%{name}introspect.1.*
