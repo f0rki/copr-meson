@@ -1,3 +1,5 @@
+%global libname mesonbuild
+
 Name:           meson
 Version:        0.29.0
 Release:        1%{?dist}
