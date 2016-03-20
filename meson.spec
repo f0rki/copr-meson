@@ -55,6 +55,9 @@ GUI for high productivity build system.
 %install
 %py3_install
 install -Dpm 0644 data/macros.%{name} %{buildroot}%{_rpmconfigdir}/macros.d/macros.%{name}
+for f in %{buildroot}%{_bindir}/*.py; do
+  mv ${f} ${f%%.py}
+done
 
 %check
 MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
