@@ -1,14 +1,15 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.31.0
-Release:        2%{?dist}
+Version:        0.33.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
+Obsoletes:	meson-gui <= 0.31.0
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -36,15 +37,6 @@ Meson is a build system designed to optimize programmer
 productivity. It aims to do this by providing simple, out-of-the-box
 support for modern software development tools and practices, such as
 unit tests, coverage reports, Valgrind, CCache and the like.
-
-%package gui
-Summary:        GUI for high productivity build system
-
-Requires:       %{name} = %{version}-%{release}
-Requires:       python3-qt5
-
-%description gui
-GUI for high productivity build system.
 
 %prep
 %autosetup
@@ -79,14 +71,11 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_mandir}/man1/wraptool.1.*
 %{_rpmconfigdir}/macros.d/macros.%{name}
 
-%files gui
-%{_bindir}/%{name}gui
-%{python3_sitelib}/%{libname}/*.ui
-%{python3_sitelib}/%{libname}/__pycache__/mgui.*
-%{python3_sitelib}/%{libname}/mgui.py
-%{_mandir}/man1/%{name}gui.1.*
-
 %changelog
+* Tue Aug 09 2016 Jon Ciesla <limburgher@gmail.com> - 0.33.0-1
+- 0.33.0
+- GUI dropped upstream.
+
 * Tue Jul 19 2016 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.31.0-2
 - https://fedoraproject.org/wiki/Changes/Automatic_Provides_for_Python_RPM_Packages
 
