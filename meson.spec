@@ -2,14 +2,14 @@
 
 Name:           meson
 Version:        0.33.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
-Obsoletes:	meson-gui <= 0.31.0
+Obsoletes:      %{name}-gui < 0.31.0-3
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -72,6 +72,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_rpmconfigdir}/macros.d/macros.%{name}
 
 %changelog
+* Tue Aug 09 2016 Jon Ciesla <limburgher@gmail.com> - 0.33.0-2
+- Obsoletes fix.
+
 * Tue Aug 09 2016 Jon Ciesla <limburgher@gmail.com> - 0.33.0-1
 - 0.33.0
 - GUI dropped upstream.
