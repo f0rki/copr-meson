@@ -30,6 +30,10 @@ BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0) python3-gobject-base gtk-doc
 BuildRequires:  pkgconfig(zlib)
+# Rust tests
+BuildRequires:  rust
+# Python tests
+BuildRequires:  python3-Cython
 Requires:       ninja-build
 
 %description
