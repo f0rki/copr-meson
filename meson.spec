@@ -1,8 +1,8 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.33.0
-Release:        2%{?dist}
+Version:        0.34.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -72,6 +72,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_rpmconfigdir}/macros.d/macros.%{name}
 
 %changelog
+* Wed Sep 07 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.34.0-1
+- Update to 0.34.0
+
 * Tue Aug 09 2016 Jon Ciesla <limburgher@gmail.com> - 0.33.0-2
 - Obsoletes fix.
 
