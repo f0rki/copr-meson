@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.34.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -14,8 +14,17 @@ Obsoletes:      %{name}-gui < 0.31.0-3
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  ninja-build
-# Test deps
-BuildRequires:  gcc gcc-c++ gcc-gfortran gcc-objc gcc-objc++ java-devel mono-core mono-devel
+# Various languages
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+BuildRequires:  gcc-gfortran
+BuildRequires:  gcc-objc
+BuildRequires:  gcc-objc++
+BuildRequires:  java-devel
+BuildRequires:  mono-core mono-devel
+BuildRequires:  rust
+BuildRequires:  ldc
+# Various libs support
 BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
@@ -30,9 +39,6 @@ BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0) python3-gobject-base gtk-doc
 BuildRequires:  pkgconfig(zlib)
-# Rust tests
-BuildRequires:  rust
-# Python tests
 BuildRequires:  python3-Cython
 Requires:       ninja-build
 
@@ -64,9 +70,6 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_bindir}/%{name}conf
 %{_bindir}/%{name}introspect
 %{_bindir}/wraptool
-%exclude %{python3_sitelib}/%{libname}/*.ui
-%exclude %{python3_sitelib}/%{libname}/__pycache__/mgui.*
-%exclude %{python3_sitelib}/%{libname}/mgui.py
 %{python3_sitelib}/%{libname}/
 %{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
 %{_mandir}/man1/%{name}.1.*
@@ -76,6 +79,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_rpmconfigdir}/macros.d/macros.%{name}
 
 %changelog
+* Wed Sep 07 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.34.0-2
+- Run D test suite
+
 * Wed Sep 07 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.34.0-1
 - Update to 0.34.0
 
