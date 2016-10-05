@@ -1,0 +1,41 @@
+From 71eddecdc7e82b16c5e454137d641f2a5f7c9c94 Mon Sep 17 00:00:00 2001
+From: Elliott Sales de Andrade <quantum.analyst@gmail.com>
+Date: Mon, 3 Oct 2016 17:52:26 -0400
+Subject: [PATCH] Add missing dependency in gnome.mkenums test.
+
+---
+ test cases/frameworks/7 gnome/mkenums/meson.build | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/test cases/frameworks/7 gnome/mkenums/meson.build b/test cases/frameworks/7 gnome/mkenums/meson.build
+index f0989cf..efd6b04 100644
+--- a/test cases/frameworks/7 gnome/mkenums/meson.build	
++++ b/test cases/frameworks/7 gnome/mkenums/meson.build	
+@@ -23,17 +23,18 @@ test('enum test 1', enumexe1)
+ 
+ # Generate both header and source via template individually and overriding.
+ 
+-enums_c2 = gnome.mkenums('abc2',
++enums_h2 = gnome.mkenums('abc2',
+   sources : 'meson-sample.h',
+-  c_template : 'enums2.c.in',
+-  ftail : '/* trailing source file info */',
++  h_template : 'enums2.h.in',
++  ftail : '/* trailing header file info */',
+   install_header : true,
+   install_dir : get_option('includedir'))
+ 
+-enums_h2 = gnome.mkenums('abc2',
++enums_c2 = gnome.mkenums('abc2',
+   sources : 'meson-sample.h',
+-  h_template : 'enums2.h.in',
+-  ftail : '/* trailing header file info */',
++  depends : enums_h2,
++  c_template : 'enums2.c.in',
++  ftail : '/* trailing source file info */',
+   install_header : true,
+   install_dir : get_option('includedir'))
+ 
+-- 
+2.10.0
+

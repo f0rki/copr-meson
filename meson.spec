@@ -2,12 +2,14 @@
 
 Name:           meson
 Version:        0.35.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+# https://github.com/mesonbuild/meson/commit/71eddecdc7e82b16c5e454137d641f2a5f7c9c94
+Patch0001:      0001-Add-missing-dependency-in-gnome.mkenums-test.patch
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
@@ -79,6 +81,9 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_rpmconfigdir}/macros.d/macros.%{name}
 
 %changelog
+* Wed Oct 05 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.35.0-2
+- Apply patch to fix FTBFS
+
 * Mon Oct 03 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.35.0-1
 - Update to 0.35.0
 
