@@ -51,7 +51,7 @@ support for modern software development tools and practices, such as
 unit tests, coverage reports, Valgrind, CCache and the like.
 
 %prep
-%autosetup
+%autosetup -p1
 
 %build
 %py3_build
