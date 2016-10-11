@@ -1,0 +1,33 @@
+From 15e90969547bc3946540dfc75e7912bd350972fa Mon Sep 17 00:00:00 2001
+From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+Date: Sat, 8 Oct 2016 17:15:02 +0200
+Subject: [PATCH 09/16] fixup! fixup! rpm: couple of improvements and fixes
+
+(cherry picked from commit 1e640955b6f7730e365f50d810e7031511b0473b)
+---
+ data/macros.meson | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/data/macros.meson b/data/macros.meson
+index dd0e60c..4b91c70 100644
+--- a/data/macros.meson
++++ b/data/macros.meson
+@@ -23,6 +23,12 @@
+             --sysconfdir=%{_sysconfdir}    \\\
+             $OLDPWD/%{__sourcedir}             \
+     popd
+-%meson_build %ninja_build -C %{__builddir}
+-%meson_install %ninja_install -C %{__builddir}
+-%meson_test %ninja_test -C %{__builddir}
++
++%meson_build \
++    %ninja_build -C %{__builddir}
++
++%meson_install \
++    %ninja_install -C %{__builddir}
++
++%meson_test \
++    %ninja_test -C %{__builddir}
+-- 
+2.10.1
+

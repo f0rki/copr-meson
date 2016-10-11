@@ -1,0 +1,128 @@
+From dcbb80c5ae3b9dd53a3a1addb69f9e804bf21c14 Mon Sep 17 00:00:00 2001
+From: Jussi Pakkanen <jpakkane@gmail.com>
+Date: Tue, 4 Oct 2016 00:38:42 +0300
+Subject: [PATCH 03/16] Remove shebangs on files that are not runnable and add
+ execute bits to those that are.
+
+(cherry picked from commit 1f4cce86add495fb07ae9ace83907dbd1415dd68)
+---
+ mesonbuild/mconf.py                   | 2 --
+ mesonbuild/mesonmain.py               | 2 --
+ mesonbuild/mintro.py                  | 2 --
+ mesonbuild/scripts/commandrunner.py   | 0
+ mesonbuild/scripts/delwithsuffix.py   | 0
+ mesonbuild/scripts/depfixer.py        | 0
+ mesonbuild/scripts/dirchanger.py      | 0
+ mesonbuild/scripts/gettext.py         | 2 --
+ mesonbuild/scripts/gtkdochelper.py    | 0
+ mesonbuild/scripts/meson_benchmark.py | 0
+ mesonbuild/scripts/meson_exe.py       | 0
+ mesonbuild/scripts/meson_install.py   | 0
+ mesonbuild/scripts/meson_test.py      | 0
+ mesonbuild/scripts/regen_checker.py   | 0
+ mesonbuild/scripts/scanbuild.py       | 1 -
+ mesonbuild/scripts/symbolextractor.py | 0
+ mesonbuild/scripts/vcstagger.py       | 0
+ 17 files changed, 9 deletions(-)
+ mode change 100644 => 100755 mesonbuild/scripts/commandrunner.py
+ mode change 100644 => 100755 mesonbuild/scripts/delwithsuffix.py
+ mode change 100644 => 100755 mesonbuild/scripts/depfixer.py
+ mode change 100644 => 100755 mesonbuild/scripts/dirchanger.py
+ mode change 100644 => 100755 mesonbuild/scripts/gtkdochelper.py
+ mode change 100644 => 100755 mesonbuild/scripts/meson_benchmark.py
+ mode change 100644 => 100755 mesonbuild/scripts/meson_exe.py
+ mode change 100644 => 100755 mesonbuild/scripts/meson_install.py
+ mode change 100644 => 100755 mesonbuild/scripts/meson_test.py
+ mode change 100644 => 100755 mesonbuild/scripts/regen_checker.py
+ mode change 100644 => 100755 mesonbuild/scripts/symbolextractor.py
+ mode change 100644 => 100755 mesonbuild/scripts/vcstagger.py
+
+diff --git a/mesonbuild/mconf.py b/mesonbuild/mconf.py
+index afabc62..25f2c6b 100644
+--- a/mesonbuild/mconf.py
++++ b/mesonbuild/mconf.py
+@@ -1,5 +1,3 @@
+-#!/usr/bin/env python3
+-
+ # Copyright 2014-2016 The Meson development team
+ 
+ # Licensed under the Apache License, Version 2.0 (the "License");
+diff --git a/mesonbuild/mesonmain.py b/mesonbuild/mesonmain.py
+index f35d821..f7da1e0 100644
+--- a/mesonbuild/mesonmain.py
++++ b/mesonbuild/mesonmain.py
+@@ -1,5 +1,3 @@
+-#!/usr/bin/env python3
+-
+ # Copyright 2012-2016 The Meson development team
+ 
+ # Licensed under the Apache License, Version 2.0 (the "License");
+diff --git a/mesonbuild/mintro.py b/mesonbuild/mintro.py
+index 2086c37..a18912e 100644
+--- a/mesonbuild/mintro.py
++++ b/mesonbuild/mintro.py
+@@ -1,5 +1,3 @@
+-#!/usr/bin/env python3
+-
+ # Copyright 2014-2016 The Meson development team
+ 
+ # Licensed under the Apache License, Version 2.0 (the "License");
+diff --git a/mesonbuild/scripts/commandrunner.py b/mesonbuild/scripts/commandrunner.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/delwithsuffix.py b/mesonbuild/scripts/delwithsuffix.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/depfixer.py b/mesonbuild/scripts/depfixer.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/dirchanger.py b/mesonbuild/scripts/dirchanger.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/gettext.py b/mesonbuild/scripts/gettext.py
+index 1f0a391..ba6b242 100644
+--- a/mesonbuild/scripts/gettext.py
++++ b/mesonbuild/scripts/gettext.py
+@@ -1,5 +1,3 @@
+-#!/usr/bin/env python3
+-
+ # Copyright 2016 The Meson development team
+ 
+ # Licensed under the Apache License, Version 2.0 (the "License");
+diff --git a/mesonbuild/scripts/gtkdochelper.py b/mesonbuild/scripts/gtkdochelper.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/meson_benchmark.py b/mesonbuild/scripts/meson_benchmark.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/meson_exe.py b/mesonbuild/scripts/meson_exe.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/meson_install.py b/mesonbuild/scripts/meson_install.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/meson_test.py b/mesonbuild/scripts/meson_test.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/regen_checker.py b/mesonbuild/scripts/regen_checker.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/scanbuild.py b/mesonbuild/scripts/scanbuild.py
+index f90c3c7..f13a1a4 100644
+--- a/mesonbuild/scripts/scanbuild.py
++++ b/mesonbuild/scripts/scanbuild.py
+@@ -1,5 +1,4 @@
+ # Copyright 2016 The Meson development team
+-
+ # Licensed under the Apache License, Version 2.0 (the "License");
+ # you may not use this file except in compliance with the License.
+ # You may obtain a copy of the License at
+diff --git a/mesonbuild/scripts/symbolextractor.py b/mesonbuild/scripts/symbolextractor.py
+old mode 100644
+new mode 100755
+diff --git a/mesonbuild/scripts/vcstagger.py b/mesonbuild/scripts/vcstagger.py
+old mode 100644
+new mode 100755
+-- 
+2.10.1
+

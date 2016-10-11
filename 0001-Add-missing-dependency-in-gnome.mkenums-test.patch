@@ -1,8 +1,9 @@
-From 71eddecdc7e82b16c5e454137d641f2a5f7c9c94 Mon Sep 17 00:00:00 2001
+From 07a44766805965f3f9f2afd1b7515e0a853399e6 Mon Sep 17 00:00:00 2001
 From: Elliott Sales de Andrade <quantum.analyst@gmail.com>
 Date: Mon, 3 Oct 2016 17:52:26 -0400
-Subject: [PATCH] Add missing dependency in gnome.mkenums test.
+Subject: [PATCH 01/16] Add missing dependency in gnome.mkenums test.
 
+(cherry picked from commit 71eddecdc7e82b16c5e454137d641f2a5f7c9c94)
 ---
  test cases/frameworks/7 gnome/mkenums/meson.build | 13 +++++++------
  1 file changed, 7 insertions(+), 6 deletions(-)
@@ -37,5 +38,5 @@ index f0989cf..efd6b04 100644
    install_dir : get_option('includedir'))
  
 -- 
-2.10.0
+2.10.1
 

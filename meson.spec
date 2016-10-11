@@ -2,14 +2,28 @@
 
 Name:           meson
 Version:        0.35.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-# https://github.com/mesonbuild/meson/commit/71eddecdc7e82b16c5e454137d641f2a5f7c9c94
 Patch0001:      0001-Add-missing-dependency-in-gnome.mkenums-test.patch
+Patch0002:      0002-run_tests-Print-stdo-and-stde-in-failing-test-logs.patch
+Patch0003:      0003-Remove-shebangs-on-files-that-are-not-runnable-and-a.patch
+Patch0004:      0004-Test-arrays-in-languages-for-the-project-method.patch
+Patch0005:      0005-intrp-Don-t-do-custom-AST-parsing-for-project.patch
+Patch0006:      0006-gnome.generate_gir-Also-include-current-build-dir.patch
+Patch0007:      0007-rpm-couple-of-improvements-and-fixes.patch
+Patch0008:      0008-fixup-rpm-couple-of-improvements-and-fixes.patch
+Patch0009:      0009-fixup-fixup-rpm-couple-of-improvements-and-fixes.patch
+Patch0010:      0010-dependencies-Fix-traceback-always-setting-variable.patch
+Patch0011:      0011-Created-path_join-function.patch
+Patch0012:      0012-Show-error-log-options-in-help.patch
+Patch0013:      0013-tests-gnome-Add-missing-enums.h-dep-to-enums2.c.patch
+Patch0014:      0014-Check-contents-of-arguments-inside-project-.-Closes-.patch
+Patch0015:      0015-setup.py-On-Unix-install-scripts-without-.py-suffix.patch
+Patch0016:      0016-allow-libdir-includedir-etc.-be-absolute-paths.patch
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
@@ -36,7 +50,7 @@ BuildRequires:  wxGTK3-devel
 BuildRequires:  flex bison
 BuildRequires:  gettext
 BuildRequires:  gnustep-base-devel
-BuildRequires:  git
+BuildRequires:  git-core
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0) python3-gobject-base gtk-doc
@@ -52,19 +66,18 @@ unit tests, coverage reports, Valgrind, CCache and the like.
 
 %prep
 %autosetup -p1
+find -type f -name '*.py' -executable -exec sed -i -e '1s|.*|#!%{__python3}|' {} ';'
 
 %build
 %py3_build
 
 %install
 %py3_install
-install -Dpm 0644 data/macros.%{name} %{buildroot}%{_rpmconfigdir}/macros.d/macros.%{name}
-for f in %{buildroot}%{_bindir}/*.py; do
-  mv ${f} ${f%%.py}
-done
+install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 
 %check
-MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
+#export MESON_PRINT_TEST_OUTPUT=1
+%{__python3} ./run_tests.py
 
 %files
 %license COPYING
@@ -78,9 +91,12 @@ MESON_PRINT_TEST_OUTPUT=1 ./run_tests.py
 %{_mandir}/man1/%{name}conf.1.*
 %{_mandir}/man1/%{name}introspect.1.*
 %{_mandir}/man1/wraptool.1.*
-%{_rpmconfigdir}/macros.d/macros.%{name}
+%{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Tue Oct 11 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.35.0-3
+- Backport couple of fixes
+
 * Wed Oct 05 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.35.0-2
 - Apply patch to fix FTBFS
 

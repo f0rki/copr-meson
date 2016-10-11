@@ -1,0 +1,25 @@
+From 9fdf87523943b38a59093fa9bde126f37a6b489b Mon Sep 17 00:00:00 2001
+From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+Date: Sat, 8 Oct 2016 17:13:37 +0200
+Subject: [PATCH 08/16] fixup! rpm: couple of improvements and fixes
+
+(cherry picked from commit b0fc370e727a9ad46516d13dac442c42801884b1)
+---
+ data/macros.meson | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/data/macros.meson b/data/macros.meson
+index 05ff484..dd0e60c 100644
+--- a/data/macros.meson
++++ b/data/macros.meson
+@@ -1,7 +1,6 @@
+ %__meson %{_bindir}/meson
+ %__sourcedir .
+ %__builddir %{_target_platform}
+-%__meson_ninja_opts -v %{?_smp_mflags} -C %{__builddir}
+ 
+ %meson \
+     export CFLAGS="%{optflags}"                \
+-- 
+2.10.1
+

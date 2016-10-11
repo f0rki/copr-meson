@@ -1,0 +1,49 @@
+From 749448d01669693fe846e8c6496eaf35de1f1dc3 Mon Sep 17 00:00:00 2001
+From: Thibault Saunier <thibault.saunier@osg.samsung.com>
+Date: Sat, 8 Oct 2016 11:16:50 +0200
+Subject: [PATCH 10/16] dependencies: Fix traceback always setting 'variable'
+
+if pkg-config return != 0 and the dep is not required, it will not be set
+
+(cherry picked from commit 6eacca2024b6b4366d427a18372dd4d0aa972df7)
+---
+ mesonbuild/dependencies.py                    | 1 +
+ test cases/frameworks/7 gnome/gir/meson.build | 3 +++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/mesonbuild/dependencies.py b/mesonbuild/dependencies.py
+index 1b9e6f4..ccff7a7 100644
+--- a/mesonbuild/dependencies.py
++++ b/mesonbuild/dependencies.py
+@@ -188,6 +188,7 @@ class PkgConfigDependency(Dependency):
+         p = subprocess.Popen([self.pkgbin, '--variable=%s' % variable_name, self.name],
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+         out = p.communicate()[0]
++        variable = ''
+         if p.returncode != 0:
+             if self.required:
+                 raise DependencyException('%s dependency %s not found.' %
+diff --git a/test cases/frameworks/7 gnome/gir/meson.build b/test cases/frameworks/7 gnome/gir/meson.build
+index 287c0d7..a513062 100644
+--- a/test cases/frameworks/7 gnome/gir/meson.build	
++++ b/test cases/frameworks/7 gnome/gir/meson.build	
+@@ -14,6 +14,8 @@ girexe = executable(
+   link_with : girlib
+ )
+ 
++fake_dep = dependency('no-way-this-exists', required: false)
++
+ gnome.generate_gir(
+   girlib,
+   sources : libsources,
+@@ -22,6 +24,7 @@ gnome.generate_gir(
+   symbol_prefix : 'meson_',
+   identifier_prefix : 'Meson',
+   includes : ['GObject-2.0'],
++  dependencies : [fake_dep],
+   install : true
+ )
+ 
+-- 
+2.10.1
+

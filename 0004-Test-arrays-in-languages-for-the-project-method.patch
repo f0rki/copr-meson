@@ -1,0 +1,30 @@
+From 6f0aaea65895f359c989df89d9751143a46a8368 Mon Sep 17 00:00:00 2001
+From: Nirbheek Chauhan <nirbheek@centricular.com>
+Date: Fri, 7 Oct 2016 18:30:35 +0530
+Subject: [PATCH 04/16] Test arrays in languages for the project() method
+
+This broke in 6590b7221e1e3a30b33a6b74b380ee5a2b24d7ef and we didn't
+have a test for it.
+
+(cherry picked from commit 4990dd197c8bc8b61b940d3564f4d8479ce32d1c)
+---
+ test cases/common/1 trivial/meson.build | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/test cases/common/1 trivial/meson.build b/test cases/common/1 trivial/meson.build
+index 3f14539..1f7b375 100644
+--- a/test cases/common/1 trivial/meson.build	
++++ b/test cases/common/1 trivial/meson.build	
+@@ -1,5 +1,8 @@
+ # Comment on the first line
+-project('trivial test', 'c', meson_version : '>=0.27.0')
++project('trivial test',
++  # Comment inside a function call + array for language list
++  ['c'],
++  meson_version : '>=0.27.0')
+ #this is a comment
+ sources = 'trivial.c'
+ 
+-- 
+2.10.1
+

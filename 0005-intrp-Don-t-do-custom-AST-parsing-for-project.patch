@@ -1,0 +1,81 @@
+From 5abbbaa2cc5bc554555ead8464ba659f4cd8e4c0 Mon Sep 17 00:00:00 2001
+From: Nirbheek Chauhan <nirbheek@centricular.com>
+Date: Fri, 7 Oct 2016 18:37:03 +0530
+Subject: [PATCH 05/16] intrp: Don't do custom AST parsing for project()
+
+Reuse the standard evaluate_codeblock() parsing since it does proper
+error handling, and also handles, for instance, lists in string
+arguments (flatten), etc. properly.
+
+We need to declare more variables in advance now, but that should be ok.
+
+(cherry picked from commit 411d6c8bc4919c28adfe5041a5576a937876ea29)
+---
+ mesonbuild/interpreter.py | 22 ++++++++++------------
+ 1 file changed, 10 insertions(+), 12 deletions(-)
+
+diff --git a/mesonbuild/interpreter.py b/mesonbuild/interpreter.py
+index cc85e77..b3bb1f2 100644
+--- a/mesonbuild/interpreter.py
++++ b/mesonbuild/interpreter.py
+@@ -1129,6 +1129,12 @@ class Interpreter():
+         self.sanity_check_ast()
+         self.variables = {}
+         self.builtin = {}
++        self.generators = []
++        self.visited_subdirs = {}
++        self.global_args_frozen = False
++        self.subprojects = {}
++        self.subproject_stack = []
++        self.build_func_dict()
+         self.parse_project()
+         self.builtin['build_machine'] = BuildMachine(self.coredata.compilers)
+         if not self.build.environment.is_cross_build():
+@@ -1145,13 +1151,7 @@ class Interpreter():
+             else:
+                 self.builtin['target_machine'] = self.builtin['host_machine']
+         self.builtin['meson'] = MesonMain(build, self)
+-        self.build_func_dict()
+         self.build_def_files = [os.path.join(self.subdir, environment.build_filename)]
+-        self.generators = []
+-        self.visited_subdirs = {}
+-        self.global_args_frozen = False
+-        self.subprojects = {}
+-        self.subproject_stack = []
+ 
+     def build_func_dict(self):
+         self.funcs = {'project' : self.func_project,
+@@ -1203,9 +1203,7 @@ class Interpreter():
+         Parses project() and initializes languages, compilers etc. Do this
+         early because we need this before we parse the rest of the AST.
+         """
+-        project = self.ast.lines[0]
+-        args, kwargs = self.reduce_arguments(project.args)
+-        self.func_project(project, args, kwargs)
++        self.evaluate_codeblock(self.ast, end=1)
+ 
+     def module_method_callback(self, invalues):
+         unwrap_single = False
+@@ -1282,7 +1280,7 @@ class Interpreter():
+         self.evaluate_codeblock(self.ast, start=1)
+         mlog.log('Build targets in project:', mlog.bold(str(len(self.build.targets))))
+ 
+-    def evaluate_codeblock(self, node, start=0):
++    def evaluate_codeblock(self, node, start=0, end=None):
+         if node is None:
+             return
+         if not isinstance(node, mparser.CodeBlockNode):
+@@ -1290,8 +1288,8 @@ class Interpreter():
+             e.lineno = node.lineno
+             e.colno = node.colno
+             raise e
+-        statements = node.lines
+-        i = start
++        statements = node.lines[start:end]
++        i = 0
+         while i < len(statements):
+             cur = statements[i]
+             try:
+-- 
+2.10.1
+
