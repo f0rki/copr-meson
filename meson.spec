@@ -1,29 +1,23 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.35.0
-Release:        3%{?dist}
+Version:        0.35.1
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-Patch0001:      0001-Add-missing-dependency-in-gnome.mkenums-test.patch
-Patch0002:      0002-run_tests-Print-stdo-and-stde-in-failing-test-logs.patch
-Patch0003:      0003-Remove-shebangs-on-files-that-are-not-runnable-and-a.patch
-Patch0004:      0004-Test-arrays-in-languages-for-the-project-method.patch
-Patch0005:      0005-intrp-Don-t-do-custom-AST-parsing-for-project.patch
-Patch0006:      0006-gnome.generate_gir-Also-include-current-build-dir.patch
-Patch0007:      0007-rpm-couple-of-improvements-and-fixes.patch
-Patch0008:      0008-fixup-rpm-couple-of-improvements-and-fixes.patch
-Patch0009:      0009-fixup-fixup-rpm-couple-of-improvements-and-fixes.patch
-Patch0010:      0010-dependencies-Fix-traceback-always-setting-variable.patch
-Patch0011:      0011-Created-path_join-function.patch
-Patch0012:      0012-Show-error-log-options-in-help.patch
-Patch0013:      0013-tests-gnome-Add-missing-enums.h-dep-to-enums2.c.patch
-Patch0014:      0014-Check-contents-of-arguments-inside-project-.-Closes-.patch
-Patch0015:      0015-setup.py-On-Unix-install-scripts-without-.py-suffix.patch
-Patch0016:      0016-allow-libdir-includedir-etc.-be-absolute-paths.patch
+Patch0001:      0001-tools-ac_converter-couple-of-trivial-fixes-867.patch
+Patch0002:      0002-Remove-shebangs-on-files-that-are-not-runnable-and-a.patch
+Patch0003:      0003-gnome.generate_gir-Also-include-current-build-dir.patch
+Patch0004:      0004-rpm-couple-of-improvements-and-fixes.patch
+Patch0005:      0005-fixup-rpm-couple-of-improvements-and-fixes.patch
+Patch0006:      0006-fixup-fixup-rpm-couple-of-improvements-and-fixes.patch
+Patch0007:      0007-Show-error-log-options-in-help.patch
+Patch0008:      0008-setup.py-On-Unix-install-scripts-without-.py-suffix.patch
+Patch0009:      0009-allow-libdir-includedir-etc.-be-absolute-paths.patch
+Patch0010:      0010-Split-generator-BASENAME-at-the-first-extension.patch
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
@@ -94,6 +88,9 @@ install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Tue Oct 18 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.35.1-1
+- Update to 0.35.1 (RHBZ #1385986)
+
 * Tue Oct 11 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.35.0-3
 - Backport couple of fixes
 

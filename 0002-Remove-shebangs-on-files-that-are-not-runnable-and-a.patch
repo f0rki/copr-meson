@@ -1,7 +1,7 @@
-From dcbb80c5ae3b9dd53a3a1addb69f9e804bf21c14 Mon Sep 17 00:00:00 2001
+From 7550d108898b30c418d2b95e164988a3aea03471 Mon Sep 17 00:00:00 2001
 From: Jussi Pakkanen <jpakkane@gmail.com>
 Date: Tue, 4 Oct 2016 00:38:42 +0300
-Subject: [PATCH 03/16] Remove shebangs on files that are not runnable and add
+Subject: [PATCH 02/10] Remove shebangs on files that are not runnable and add
  execute bits to those that are.
 
 (cherry picked from commit 1f4cce86add495fb07ae9ace83907dbd1415dd68)

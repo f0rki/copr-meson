@@ -1,7 +1,7 @@
-From 15e90969547bc3946540dfc75e7912bd350972fa Mon Sep 17 00:00:00 2001
+From 3e5b7cd80b2666fcb1ad4961e7ab9dfd4b99454f Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Sat, 8 Oct 2016 17:15:02 +0200
-Subject: [PATCH 09/16] fixup! fixup! rpm: couple of improvements and fixes
+Subject: [PATCH 06/10] fixup! fixup! rpm: couple of improvements and fixes
 
 (cherry picked from commit 1e640955b6f7730e365f50d810e7031511b0473b)
 ---

@@ -1,7 +1,7 @@
-From 3a621287b7420fe72b2dbe9f1dd3f38ae1687ed5 Mon Sep 17 00:00:00 2001
+From 9c39bec3c0c3ff08674a4924901c1ce8b566866a Mon Sep 17 00:00:00 2001
 From: Patrick Griffis <tingping@tingping.se>
 Date: Fri, 30 Sep 2016 23:28:40 -0400
-Subject: [PATCH 15/16] setup.py: On Unix install scripts without .py suffix
+Subject: [PATCH 08/10] setup.py: On Unix install scripts without .py suffix
 
 (cherry picked from commit 999669e8501501d4618588008e4bf4353a1ace2a)
 ---

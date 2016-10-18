@@ -1,7 +1,7 @@
-From 90f928d01f917fcc8944272ad4b30b81a29f53ca Mon Sep 17 00:00:00 2001
+From 12501846ca7f5ce3b33bb9f58839d392952e8c78 Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Sat, 8 Oct 2016 16:54:03 +0200
-Subject: [PATCH 07/16] rpm: couple of improvements and fixes
+Subject: [PATCH 04/10] rpm: couple of improvements and fixes
 
 * Don't hardcode /usr/bin, use %{_bindir}
 * Implement %meson_build / %meson_install / %meson_test

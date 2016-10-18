@@ -1,7 +1,7 @@
-From 02114f9d5066f54c7df9653651c083f590e1da1c Mon Sep 17 00:00:00 2001
+From 4e8696fefcc2c4ce2c5d49b19ce5b4a8a9b9debb Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Fri, 7 Oct 2016 23:15:55 +0200
-Subject: [PATCH 16/16] allow libdir/includedir/etc. be absolute paths
+Subject: [PATCH 09/10] allow libdir/includedir/etc. be absolute paths
 
 In Fedora we don't care about prefix, we want to ensure that libdir
 is /usr/lib64, localedir is /usr/share/locale, and cetera.
@@ -19,7 +19,7 @@ Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
  2 files changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/mesonbuild/coredata.py b/mesonbuild/coredata.py
-index b32a257..0a4dca8 100644
+index 2ff3bc8..34bb6f1 100644
 --- a/mesonbuild/coredata.py
 +++ b/mesonbuild/coredata.py
 @@ -36,11 +36,6 @@ class UserStringOption(UserOption):

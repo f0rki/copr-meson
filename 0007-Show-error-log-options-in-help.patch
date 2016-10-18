@@ -1,7 +1,7 @@
-From ed97ba07f3dee878aca7c5f0d802fd6d75e36704 Mon Sep 17 00:00:00 2001
+From c66a24034898d0f08b69a02541b22e340fccb80c Mon Sep 17 00:00:00 2001
 From: Jussi Pakkanen <jpakkane@gmail.com>
 Date: Sat, 8 Oct 2016 11:17:22 -0400
-Subject: [PATCH 12/16] Show error log options in help.
+Subject: [PATCH 07/10] Show error log options in help.
 
 (cherry picked from commit e2b3752f875754abcc3981754505ae0db9e18155)
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH 12/16] Show error log options in help.
  2 files changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/mesonbuild/coredata.py b/mesonbuild/coredata.py
-index 51bf107..b32a257 100644
+index 587c6b3..2ff3bc8 100644
 --- a/mesonbuild/coredata.py
 +++ b/mesonbuild/coredata.py
 @@ -224,7 +224,7 @@ builtin_options = {
