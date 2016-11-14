@@ -1,23 +1,13 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.35.1
+Version:        0.36.0
 Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-Patch0001:      0001-tools-ac_converter-couple-of-trivial-fixes-867.patch
-Patch0002:      0002-Remove-shebangs-on-files-that-are-not-runnable-and-a.patch
-Patch0003:      0003-gnome.generate_gir-Also-include-current-build-dir.patch
-Patch0004:      0004-rpm-couple-of-improvements-and-fixes.patch
-Patch0005:      0005-fixup-rpm-couple-of-improvements-and-fixes.patch
-Patch0006:      0006-fixup-fixup-rpm-couple-of-improvements-and-fixes.patch
-Patch0007:      0007-Show-error-log-options-in-help.patch
-Patch0008:      0008-setup.py-On-Unix-install-scripts-without-.py-suffix.patch
-Patch0009:      0009-allow-libdir-includedir-etc.-be-absolute-paths.patch
-Patch0010:      0010-Split-generator-BASENAME-at-the-first-extension.patch
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
@@ -48,6 +38,7 @@ BuildRequires:  git-core
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0) python3-gobject-base gtk-doc
+BuildRequires:  itstool
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  python3-Cython
 Requires:       ninja-build
@@ -88,6 +79,9 @@ install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Mon Nov 14 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.36.0-1
+- Update to 0.36.0
+
 * Tue Oct 18 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.35.1-1
 - Update to 0.35.1 (RHBZ #1385986)
 
