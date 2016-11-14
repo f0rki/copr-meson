@@ -30,6 +30,9 @@ BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  vala
+%if 0%{?fedora} && 0%{?fedora} <= 24
+BuildRequires:  vala-tools
+%endif
 BuildRequires:  wxGTK3-devel
 BuildRequires:  flex bison
 BuildRequires:  gettext
