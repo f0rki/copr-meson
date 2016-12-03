@@ -74,7 +74,7 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_bindir}/%{name}introspect
 %{_bindir}/wraptool
 %{python3_sitelib}/%{libname}/
-%{python3_sitelib}/%{name}-%{version}-py%{python3_version}.egg-info/
+%{python3_sitelib}/%{name}-*.egg-info/
 %{_mandir}/man1/%{name}.1.*
 %{_mandir}/man1/%{name}conf.1.*
 %{_mandir}/man1/%{name}introspect.1.*
