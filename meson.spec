@@ -11,8 +11,8 @@ Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
-BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
+BuildRequires:  python%{python3_pkgversion}-devel
+BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  ninja-build
 # Various languages
 BuildRequires:  gcc
@@ -23,14 +23,18 @@ BuildRequires:  gcc-objc++
 BuildRequires:  java-devel
 BuildRequires:  mono-core mono-devel
 BuildRequires:  rust
+# No ldc as of RHEL7
+%if ! 0%{?rhel}
 BuildRequires:  ldc
+%endif
 # Various libs support
 BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  vala
-%if 0%{?fedora} && 0%{?fedora} <= 24
+# In recent versions it's merged into vala
+%if (0%{?fedora} && 0%{?fedora} <= 24) || (0%{?rhel} && 0%{?rhel} <= 7)
 BuildRequires:  vala-tools
 %endif
 BuildRequires:  wxGTK3-devel
@@ -40,10 +44,14 @@ BuildRequires:  gnustep-base-devel
 BuildRequires:  git-core
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(gobject-introspection-1.0) python3-gobject-base gtk-doc
+BuildRequires:  pkgconfig(gobject-introspection-1.0)
+%if ! 0%{?rhel} || 0%{?rhel} > 7
+BuildRequires:  python3-gobject-base
+%endif
+BuildRequires:  gtk-doc
 BuildRequires:  itstool
 BuildRequires:  pkgconfig(zlib)
-BuildRequires:  python3-Cython
+BuildRequires:  python%{python3_pkgversion}-Cython
 Requires:       ninja-build
 
 %description
@@ -65,7 +73,7 @@ install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 
 %check
 export MESON_PRINT_TEST_OUTPUT=1
-%{__python3} ./run_tests.py
+%{__python3} ./run_tests.py %{?rhel:|| :}
 
 %files
 %license COPYING
