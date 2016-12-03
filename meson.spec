@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.36.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -64,7 +64,7 @@ find -type f -name '*.py' -executable -exec sed -i -e '1s|.*|#!%{__python3}|' {}
 install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 
 %check
-#export MESON_PRINT_TEST_OUTPUT=1
+export MESON_PRINT_TEST_OUTPUT=1
 %{__python3} ./run_tests.py
 
 %files
@@ -82,6 +82,9 @@ install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Sat Dec 03 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.36.0-2
+- Print test output during build
+
 * Mon Nov 14 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.36.0-1
 - Update to 0.36.0
 
