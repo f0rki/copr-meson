@@ -1,4 +1,4 @@
-From 0121faf16873b500274b36955a08c6994e7f6f76 Mon Sep 17 00:00:00 2001
+From d98711cde68faf2ab61584b3c81a3ab66c3833d8 Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Tue, 13 Dec 2016 12:29:28 +0100
 Subject: [PATCH 2/2] rpm: use __global_*flags
@@ -14,12 +14,13 @@ but anyway we already have %__global_ldflags and %ninja_build and
 no one complained.
 
 Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+(cherry picked from commit 0121faf16873b500274b36955a08c6994e7f6f76)
 ---
  data/macros.meson | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/data/macros.meson b/data/macros.meson
-index 5250c348..4eb1ab9a 100644
+index 1512a6bf..e8b15cdd 100644
 --- a/data/macros.meson
 +++ b/data/macros.meson
 @@ -3,11 +3,11 @@

@@ -1,4 +1,4 @@
-From dcd3c217121fbb09be8acecd2d866219e85ad9bd Mon Sep 17 00:00:00 2001
+From dd2843cf8752d26575b15cd1ba73c43bd3501494 Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Tue, 13 Dec 2016 11:59:52 +0100
 Subject: [PATCH 1/2] rpm: use meson's syntax to specify sourcedir and builddir
@@ -16,32 +16,32 @@ this problem with pushd/popd. It also simplifies things a bit.
 Reported-by: Richard Hughes <richard@hughsie.com>
 References: https://bugzilla.redhat.com/show_bug.cgi?id=1401062
 Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+(cherry picked from commit dcd3c217121fbb09be8acecd2d866219e85ad9bd)
 ---
- data/macros.meson | 30 ++++++++++++++----------------
- 1 file changed, 14 insertions(+), 16 deletions(-)
+ data/macros.meson | 28 +++++++++++++---------------
+ 1 file changed, 13 insertions(+), 15 deletions(-)
 
 diff --git a/data/macros.meson b/data/macros.meson
-index 97d8a23f..5250c348 100644
+index 4b91c70d..1512a6bf 100644
 --- a/data/macros.meson
 +++ b/data/macros.meson
-@@ -8,22 +8,20 @@
+@@ -8,21 +8,19 @@
      export FFLAGS="%{optflags} -I%{_fmoddir}"  \
      export FCFLAGS="%{optflags} -I%{_fmoddir}" \
      export LDFLAGS="%{?__global_ldflags}"      \
 -    mkdir -p %{__builddir}                     \
 -    pushd %{__builddir}                        \
--        %{__meson}                            \\\
--            --buildtype=plain                 \\\
--            --prefix=%{_prefix}               \\\
--            --libdir=%{_libdir}               \\\
--            --libexecdir=%{_libexecdir}       \\\
--            --bindir=%{_bindir}               \\\
--            --includedir=%{_includedir}       \\\
--            --datadir=%{_datadir}             \\\
--            --mandir=%{_mandir}               \\\
--            --localedir=%{_datadir}/locale    \\\
--            --sysconfdir=%{_sysconfdir}       \\\
--            --localstatedir=%{_localstatedir} \\\
+-        %{__meson}                         \\\
+-            --buildtype=plain              \\\
+-            --prefix=%{_prefix}            \\\
+-            --libdir=%{_libdir}            \\\
+-            --libexecdir=%{_libexecdir}    \\\
+-            --bindir=%{_bindir}            \\\
+-            --includedir=%{_includedir}    \\\
+-            --datadir=%{_datadir}          \\\
+-            --mandir=%{_mandir}            \\\
+-            --localedir=%{_datadir}/locale \\\
+-            --sysconfdir=%{_sysconfdir}    \\\
 -            $OLDPWD/%{__sourcedir}             \
 -    popd
 +    %{__meson}                            \\\
@@ -55,7 +55,6 @@ index 97d8a23f..5250c348 100644
 +        --mandir=%{_mandir}               \\\
 +        --localedir=%{_datadir}/locale    \\\
 +        --sysconfdir=%{_sysconfdir}       \\\
-+        --localstatedir=%{_localstatedir} \\\
 +        %{__sourcedir} %{__builddir}      \\\
 +        %{nil}
  
