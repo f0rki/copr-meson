@@ -2,12 +2,14 @@
 
 Name:           meson
 Version:        0.36.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+Patch0001:      0001-rpm-use-meson-s-syntax-to-specify-sourcedir-and-buil.patch
+Patch0002:      0002-rpm-use-__global_-flags.patch
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
@@ -90,6 +92,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Tue Dec 13 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.36.0-3
+- Backport fixes to RPM macros
+
 * Sat Dec 03 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.36.0-2
 - Print test output during build
 
