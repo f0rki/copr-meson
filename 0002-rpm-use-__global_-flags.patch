@@ -1,7 +1,7 @@
-From d98711cde68faf2ab61584b3c81a3ab66c3833d8 Mon Sep 17 00:00:00 2001
+From 469fbaba002796975baf8d60f583c55d690e381a Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Tue, 13 Dec 2016 12:29:28 +0100
-Subject: [PATCH 2/2] rpm: use __global_*flags
+Subject: [PATCH 2/3] rpm: use __global_*flags
 
 Using RPM's %{optflags} is definitely nice, but not enough. LDFLAGS
 are not there, and idea of optflags is too generic. It is supposed
