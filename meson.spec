@@ -80,6 +80,7 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_bindir}/%{name}
 %{_bindir}/%{name}conf
 %{_bindir}/%{name}introspect
+%{_bindir}/%{name}test
 %{_bindir}/wraptool
 %{python3_sitelib}/%{libname}/
 %{python3_sitelib}/%{name}-*.egg-info/
