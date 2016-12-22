@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.37.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -91,6 +91,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Thu Dec 22 2016 Miro Hrončok <mhroncok@redhat.com> - 0.37.1-2
+- Rebuild for Python 3.6
+
 * Tue Dec 20 2016 Igor Gnatenko <i.gnatenko.brain@gmail.com> - 0.37.1-1
 - Update to 0.37.1
 
