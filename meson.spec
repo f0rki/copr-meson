@@ -1,8 +1,8 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.37.1
-Release:        2%{?dist}
+Version:        0.38.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -84,13 +84,17 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_bindir}/wraptool
 %{python3_sitelib}/%{libname}/
 %{python3_sitelib}/%{name}-*.egg-info/
-%{_mandir}/man1/%{name}.1.*
-%{_mandir}/man1/%{name}conf.1.*
-%{_mandir}/man1/%{name}introspect.1.*
-%{_mandir}/man1/wraptool.1.*
+%{_mandir}/man1/%{name}.1*
+%{_mandir}/man1/%{name}conf.1*
+%{_mandir}/man1/%{name}introspect.1*
+%{_mandir}/man1/%{name}test.1*
+%{_mandir}/man1/wraptool.1*
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Sun Jan 29 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.38.0-1
+- Update to 0.38.0
+
 * Thu Dec 22 2016 Miro Hrončok <mhroncok@redhat.com> - 0.37.1-2
 - Rebuild for Python 3.6
 
