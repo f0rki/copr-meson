@@ -1,7 +1,7 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.38.1
+Version:        0.39.0
 Release:        1%{?dist}
 Summary:        High productivity build system
 
@@ -92,6 +92,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Mon Mar 06 2017 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.39.0-1
+- Update to 0.39.0
+
 * Tue Feb 07 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.38.1-1
 - Update to 0.38.1
 
