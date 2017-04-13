@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.39.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -24,7 +24,7 @@ BuildRequires:  java-devel
 BuildRequires:  mono-core mono-devel
 BuildRequires:  rust
 # No ldc as of RHEL7
-%if ! 0%{?rhel}
+%if ! 0%{?rhel} && ! 0%{?_module_build}
 BuildRequires:  ldc
 %endif
 # Various libs support
@@ -92,6 +92,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Thu Apr 13 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.39.1-2
+- Exclude ldc for module builds
+
 * Thu Mar 16 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.39.1-1
 - Update to 0.39.1
 
