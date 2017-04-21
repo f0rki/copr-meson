@@ -38,9 +38,11 @@ BuildRequires:  vala
 BuildRequires:  vala-tools
 %endif
 BuildRequires:  wxGTK3-devel
-BuildRequires:  flex bison
+BuildRequires:  flex
+BuildRequires:  bison
 BuildRequires:  gettext
 BuildRequires:  gnustep-base-devel
+BuildRequires:  %{_bindir}/gnustep-config
 BuildRequires:  git-core
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
