@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.40.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -23,9 +23,12 @@ BuildRequires:  gcc-objc++
 BuildRequires:  java-devel
 BuildRequires:  mono-core mono-devel
 BuildRequires:  rust
-# No ldc as of RHEL7
-%if ! 0%{?rhel} && ! 0%{?_module_build}
-BuildRequires:  ldc
+# No ldc as of RHEL7 and on non-ldc arches
+%if ! 0%{?rhel} || 0%{?rhel} > 7
+# Since the build is noarch, we can't use %ifarch
+#%%ifarch %%{ldc_arches}
+#BuildRequires:  ldc
+#%%endif
 %endif
 # Various libs support
 BuildRequires:  boost-devel
@@ -94,6 +97,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Wed May 31 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.40.1-2
+- Don't run ldc tests
+
 * Fri Apr 28 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.40.1-1
 - Update to 0.40.1
 
