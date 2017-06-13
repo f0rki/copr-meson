@@ -1,8 +1,8 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.40.1
-Release:        2%{?dist}
+Version:        0.41.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -97,6 +97,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Tue Jun 13 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.41.0-1
+- Update to 0.41.0
+
 * Wed May 31 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.40.1-2
 - Don't run ldc tests
 
