@@ -57,6 +57,8 @@ BuildRequires:  gtk-doc
 BuildRequires:  itstool
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  python%{python3_pkgversion}-Cython
+BuildRequires:  pkgconfig(sdl2)
+BuildRequires:  llvm-devel
 Requires:       ninja-build
 
 %description
