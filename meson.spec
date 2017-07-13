@@ -2,12 +2,16 @@
 
 Name:           meson
 Version:        0.41.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+
+# https://github.com/mesonbuild/meson/commit/0283a2fb41fb4c25be1d0078bb40ae761d47462a
+Patch0001:      0001-pkgconfig-avoid-appending-slash-at-Cflags.patch
+
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
@@ -99,6 +103,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Thu Jul 13 2017 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.41.1-2
+- Strip trailing slash from pkg-config files
+
 * Mon Jun 19 2017 Igor Gnatenko <ignatenko@redhat.com> - 0.41.1-1
 - Update to 0.41.1
 
