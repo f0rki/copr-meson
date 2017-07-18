@@ -1,0 +1,99 @@
+From 3bf44e21bba1b83c0f8698779263a5e7679d6f19 Mon Sep 17 00:00:00 2001
+From: Elliott Sales de Andrade <quantum.analyst@gmail.com>
+Date: Mon, 19 Jun 2017 19:53:58 -0400
+Subject: [PATCH 4/6] Add example of generated header in docs.
+
+---
+ .../frameworks/10 gtk-doc/doc/foobar-docs.sgml     |  1 +
+ .../frameworks/10 gtk-doc/include/foo-version.h.in | 29 ++++++++++++++++++++++
+ .../frameworks/10 gtk-doc/include/meson.build      | 10 ++++++++
+ test cases/frameworks/10 gtk-doc/meson.build       |  4 ++-
+ 4 files changed, 43 insertions(+), 1 deletion(-)
+ create mode 100644 test cases/frameworks/10 gtk-doc/include/foo-version.h.in
+ create mode 100644 test cases/frameworks/10 gtk-doc/include/meson.build
+
+diff --git a/test cases/frameworks/10 gtk-doc/doc/foobar-docs.sgml b/test cases/frameworks/10 gtk-doc/doc/foobar-docs.sgml
+index d23b22fe..028b8083 100644
+--- a/test cases/frameworks/10 gtk-doc/doc/foobar-docs.sgml	
++++ b/test cases/frameworks/10 gtk-doc/doc/foobar-docs.sgml	
+@@ -34,6 +34,7 @@
+       </para>
+     </partintro>
+     <xi:include href="xml/foo.xml"/>
++    <xi:include href="xml/foo-version.xml"/>
+   </reference>
+ 
+ </book>
+diff --git a/test cases/frameworks/10 gtk-doc/include/foo-version.h.in b/test cases/frameworks/10 gtk-doc/include/foo-version.h.in
+new file mode 100644
+index 00000000..30751cd7
+--- /dev/null
++++ b/test cases/frameworks/10 gtk-doc/include/foo-version.h.in	
+@@ -0,0 +1,29 @@
++#pragma once
++
++/**
++ * SECTION:version
++ * @section_id: foo-version
++ * @short_description: <filename>foo-version.h</filename>
++ * @title: Foo Versioning
++ */
++
++/**
++ * FOO_MAJOR_VERSION:
++ *
++ * The major version of foo.
++ */
++#define FOO_MAJOR_VERSION (@FOO_MAJOR_VERSION@)
++
++/**
++ * FOO_MINOR_VERSION:
++ *
++ * The minor version of foo.
++ */
++#define FOO_MINOR_VERSION (@FOO_MINOR_VERSION@)
++
++/**
++ * FOO_MICRO_VERSION:
++ *
++ * The micro version of foo.
++ */
++#define FOO_MICRO_VERSION (@FOO_MICRO_VERSION@)
+diff --git a/test cases/frameworks/10 gtk-doc/include/meson.build b/test cases/frameworks/10 gtk-doc/include/meson.build
+new file mode 100644
+index 00000000..4c85b801
+--- /dev/null
++++ b/test cases/frameworks/10 gtk-doc/include/meson.build	
+@@ -0,0 +1,10 @@
++cdata = configuration_data()
++parts = meson.project_version().split('.')
++cdata.set('FOO_MAJOR_VERSION', parts[0])
++cdata.set('FOO_MINOR_VERSION', parts[1])
++cdata.set('FOO_MICRO_VERSION', parts[2])
++configure_file(input : 'foo-version.h.in',
++  output : 'foo-version.h',
++  configuration : cdata,
++  install : true,
++  install_dir : get_option('includedir'))
+diff --git a/test cases/frameworks/10 gtk-doc/meson.build b/test cases/frameworks/10 gtk-doc/meson.build
+index 95eeefa7..4cfcca18 100644
+--- a/test cases/frameworks/10 gtk-doc/meson.build	
++++ b/test cases/frameworks/10 gtk-doc/meson.build	
+@@ -1,4 +1,4 @@
+-project('gtkdoctest', 'c')
++project('gtkdoctest', 'c', version : '1.0.0')
+ 
+ gnome = import('gnome')
+ 
+@@ -6,6 +6,8 @@ assert(gnome.gtkdoc_html_dir('foobar') == 'share/gtkdoc/html/foobar', 'Gtkdoc in
+ 
+ inc = include_directories('include')
+ 
++subdir('include')
++
+ # We have to disable this test until this bug fix has landed to
+ # distros https://bugzilla.gnome.org/show_bug.cgi?id=753145
+ error('MESON_SKIP_TEST can not enable gtk-doc test until upstream fixes have landed.')
+-- 
+2.13.0
+

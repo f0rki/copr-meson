@@ -1,0 +1,41 @@
+From 19f39ad05952099ecb915399231aa88f9acd3b20 Mon Sep 17 00:00:00 2001
+From: Nirbheek Chauhan <nirbheek@centricular.com>
+Date: Mon, 17 Jul 2017 12:41:54 +0530
+Subject: [PATCH 6/6] gnome module: Add -lfoo after -Lbar LDFLAGS
+
+Otherwise they won't take effect
+---
+ mesonbuild/modules/gnome.py | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/mesonbuild/modules/gnome.py b/mesonbuild/modules/gnome.py
+index 7d539aa8..6e633a70 100644
+--- a/mesonbuild/modules/gnome.py
++++ b/mesonbuild/modules/gnome.py
+@@ -288,11 +288,8 @@ class GnomeModule(ExtensionModule):
+ 
+     def _get_link_args(self, state, lib, depends=None, include_rpath=False,
+                        use_gir_args=False):
++        link_command = []
+         # Construct link args
+-        if gir_has_extra_lib_arg() and use_gir_args:
+-            link_command = ['--extra-library=' + lib.name]
+-        else:
+-            link_command = ['-l' + lib.name]
+         if isinstance(lib, build.SharedLibrary):
+             libdir = os.path.join(state.environment.get_build_dir(), state.backend.get_target_dir(lib))
+             link_command.append('-L' + libdir)
+@@ -309,6 +306,10 @@ class GnomeModule(ExtensionModule):
+                 link_command.append('-Wl,-rpath,' + libdir)
+             if depends:
+                 depends.append(lib)
++        if gir_has_extra_lib_arg() and use_gir_args:
++            link_command.append('--extra-library=' + lib.name)
++        else:
++            link_command.append('-l' + lib.name)
+         return link_command
+ 
+     def _get_dependencies_flags(self, deps, state, depends=None, include_rpath=False,
+-- 
+2.13.0
+

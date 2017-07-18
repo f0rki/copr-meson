@@ -1,0 +1,29 @@
+From 7c8ba60384f9c6b9bdcad0345f56d73c246ab98c Mon Sep 17 00:00:00 2001
+From: Elliott Sales de Andrade <quantum.analyst@gmail.com>
+Date: Mon, 19 Jun 2017 19:05:42 -0400
+Subject: [PATCH 1/6] Use absolute path to target dir within gnome module.
+
+Stuff like gtkdoc may not be run in the top-level build directory, so
+these paths need to be absolute.
+
+Fixes #1950.
+---
+ mesonbuild/modules/gnome.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mesonbuild/modules/gnome.py b/mesonbuild/modules/gnome.py
+index 6ec70403..3c80a094 100644
+--- a/mesonbuild/modules/gnome.py
++++ b/mesonbuild/modules/gnome.py
+@@ -294,7 +294,7 @@ class GnomeModule(ExtensionModule):
+         else:
+             link_command = ['-l' + lib.name]
+         if isinstance(lib, build.SharedLibrary):
+-            libdir = state.backend.get_target_dir(lib)
++            libdir = os.path.join(state.environment.get_build_dir(), state.backend.get_target_dir(lib))
+             link_command.append('-L' + libdir)
+             # Needed for the following binutils bug:
+             # https://github.com/mesonbuild/meson/issues/1911
+-- 
+2.13.0
+

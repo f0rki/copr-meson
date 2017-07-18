@@ -1,0 +1,27 @@
+From cf01adbf77a5a739fb7be6a1f297d16c3213da94 Mon Sep 17 00:00:00 2001
+From: Elliott Sales de Andrade <quantum.analyst@gmail.com>
+Date: Mon, 19 Jun 2017 19:07:09 -0400
+Subject: [PATCH 3/6] Add all internal dep rpaths to gnome module builds.
+
+Running gtkdoc on a shared library that depends on another shared
+library would fail otherwise.
+---
+ mesonbuild/modules/gnome.py | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/mesonbuild/modules/gnome.py b/mesonbuild/modules/gnome.py
+index 00e5a8cb..7d539aa8 100644
+--- a/mesonbuild/modules/gnome.py
++++ b/mesonbuild/modules/gnome.py
+@@ -303,6 +303,8 @@ class GnomeModule(ExtensionModule):
+             for d in state.backend.determine_rpath_dirs(lib):
+                 d = os.path.join(state.environment.get_build_dir(), d)
+                 link_command.append('-L' + d)
++                if include_rpath:
++                    link_command.append('-Wl,-rpath,' + d)
+             if include_rpath:
+                 link_command.append('-Wl,-rpath,' + libdir)
+             if depends:
+-- 
+2.13.0
+

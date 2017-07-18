@@ -1,0 +1,58 @@
+From b9caaf94bc918dc8831889e1c6de5bbc9ad2a481 Mon Sep 17 00:00:00 2001
+From: Nirbheek Chauhan <nirbheek@centricular.com>
+Date: Mon, 17 Jul 2017 12:40:09 +0530
+Subject: [PATCH 5/6] gnome.gtkdoc: Handle absolute install_dirs correctly
+
+Must prepend DESTDIR in case it's absolute. Also document that by
+default it is relative to the gtk-doc html directory.
+---
+ docs/markdown/Gnome-module.md      | 4 ++--
+ mesonbuild/scripts/gtkdochelper.py | 8 +++++---
+ 2 files changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/docs/markdown/Gnome-module.md b/docs/markdown/Gnome-module.md
+index 61b88ada..098f030f 100644
+--- a/docs/markdown/Gnome-module.md
++++ b/docs/markdown/Gnome-module.md
+@@ -134,14 +134,14 @@ This also creates two targets for translations `help-$project-update-po` and `he
+ 
+ ### gnome.gtkdoc()
+ 
+-Compiles and installs gtkdoc documentation. Takes one positional arguments; The name of the module.
++Compiles and installs gtkdoc documentation into `prefix/share/gtk-doc/html`. Takes one positional argument: The name of the module.
+ 
+ * `main_xml`: specifies the main XML file
+ * `main_sgml`: equal to `main_xml`
+ * `src_dir`: include_directories to include
+ * `dependencies`: a list of dependencies
+ * `install`: if true, installs the generated docs
+-* `install_dir`: the directory to install the generated docs
++* `install_dir`: the directory to install the generated docs relative to the gtk-doc html dir or an absolute path (default: module name)
+ * `scan_args`: a list of arguments to pass to `gtkdoc-scan`
+ * `scanobjs_args`: a list of arguments to pass to `gtkdoc-scangobj`
+ * `gobject_typesfile`: a list of type files
+diff --git a/mesonbuild/scripts/gtkdochelper.py b/mesonbuild/scripts/gtkdochelper.py
+index a2cbf5a5..45ed96bc 100644
+--- a/mesonbuild/scripts/gtkdochelper.py
++++ b/mesonbuild/scripts/gtkdochelper.py
+@@ -218,12 +218,14 @@ def run(args):
+         options.mode)
+ 
+     if 'MESON_INSTALL_PREFIX' in os.environ:
+-        install_dir = options.install_dir if options.install_dir else options.modulename
+         destdir = os.environ.get('DESTDIR', '')
+-        installdir = destdir_join(destdir, os.environ['MESON_INSTALL_PREFIX'])
++        install_prefix = destdir_join(destdir, os.environ['MESON_INSTALL_PREFIX'])
++        install_dir = options.install_dir if options.install_dir else options.modulename
++        if os.path.isabs(install_dir):
++            install_dir = destdir_join(destdir, install_dir)
+         install_gtkdoc(options.builddir,
+                        options.subdir,
+-                       installdir,
++                       install_prefix,
+                        'share/gtk-doc/html',
+                        install_dir)
+     return 0
+-- 
+2.13.0
+
