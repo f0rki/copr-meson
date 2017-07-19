@@ -1,24 +1,13 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.41.1
-Release:        3%{?dist}
+Version:        0.41.2
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-
-# https://github.com/mesonbuild/meson/commit/0283a2fb41fb4c25be1d0078bb40ae761d47462a
-Patch0001:      0001-pkgconfig-avoid-appending-slash-at-Cflags.patch
-
-# various gtk-doc fixes backported from upstream
-Patch0002:      0001-Use-absolute-path-to-target-dir-within-gnome-module.patch
-Patch0003:      0002-Add-build-include-directory-to-gtkdoc-source-paths.patch
-Patch0004:      0003-Add-all-internal-dep-rpaths-to-gnome-module-builds.patch
-Patch0005:      0004-Add-example-of-generated-header-in-docs.patch
-Patch0006:      0005-gnome.gtkdoc-Handle-absolute-install_dirs-correctly.patch
-Patch0007:      0006-gnome-module-Add-lfoo-after-Lbar-LDFLAGS.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -111,6 +100,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Wed Jul 19 2017 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.41.2-1
+- Update to 0.41.2
+
 * Tue Jul 18 2017 Kalev Lember <klember@redhat.com> - 0.41.1-3
 - Backport various gtk-doc fixes from upstream
 
