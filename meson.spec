@@ -59,7 +59,7 @@ BuildRequires:  itstool
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  python%{python3_pkgversion}-Cython
 BuildRequires:  pkgconfig(sdl2)
-BuildRequires:  pkgconfig(pcap)
+BuildRequires:  %{_bindir}/pcap-config
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  openmpi-devel
 BuildRequires:  llvm-devel
