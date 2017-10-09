@@ -1,5 +1,7 @@
 %global libname mesonbuild
 
+%bcond_with check
+
 Name:           meson
 Version:        0.43.0
 Release:        1%{?dist}
@@ -15,6 +17,7 @@ Obsoletes:      %{name}-gui < 0.31.0-3
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
 BuildRequires:  ninja-build
+%if %{with check}
 # Various languages
 BuildRequires:  gcc
 BuildRequires:  libasan
@@ -51,6 +54,7 @@ BuildRequires:  %{_bindir}/gnustep-config
 BuildRequires:  git-core
 BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(glib-sharp-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
 %if ! 0%{?rhel} || 0%{?rhel} > 7
 BuildRequires:  python3-gobject-base
@@ -63,6 +67,8 @@ BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  %{_bindir}/pcap-config
 BuildRequires:  pkgconfig(vulkan)
 BuildRequires:  llvm-devel
+BuildRequires:  cups-devel
+%endif
 Requires:       ninja-build
 
 %description
@@ -84,9 +90,11 @@ rm -rf "test cases/frameworks/17 mpi"
 %py3_install
 install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 
+%if %{with check}
 %check
 export MESON_PRINT_TEST_OUTPUT=1
 %{__python3} ./run_tests.py %{?rhel:|| :}
+%endif
 
 %files
 %license COPYING
