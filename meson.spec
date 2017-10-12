@@ -16,8 +16,8 @@ Obsoletes:      %{name}-gui < 0.31.0-3
 
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
-BuildRequires:  ninja-build
 %if %{with check}
+BuildRequires:  ninja-build
 # Various languages
 BuildRequires:  gcc
 BuildRequires:  libasan
