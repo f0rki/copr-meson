@@ -3,7 +3,7 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.43.0
+Version:        0.44.0
 Release:        1%{?dist}
 Summary:        High productivity build system
 
@@ -113,6 +113,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Sun Dec 10 2017 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.44.0-1
+- Update to 0.44.0
+
 * Mon Oct 09 2017 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.43.0-1
 - Update to 0.43.0
 
