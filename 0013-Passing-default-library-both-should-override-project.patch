@@ -1,0 +1,67 @@
+From 73adac113efb54643dd85474d0273391722ac422 Mon Sep 17 00:00:00 2001
+From: Xavier Claessens <xavier.claessens@collabora.com>
+Date: Fri, 27 Apr 2018 11:11:22 -0400
+Subject: [PATCH 13/16] Passing --default-library=both should override project
+ value
+
+Looks like this has always been broken, had_argument_for() was checking
+if we have --default_library instead of --default-library.
+---
+ mesonbuild/environment.py                   |  2 +-
+ run_unittests.py                            | 10 ++++++++++
+ test cases/unit/30 command line/meson.build |  4 +++-
+ 3 files changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/mesonbuild/environment.py b/mesonbuild/environment.py
+index 6920b8d6..15b37378 100644
+--- a/mesonbuild/environment.py
++++ b/mesonbuild/environment.py
+@@ -373,7 +373,7 @@ class Environment:
+         return is_library(fname)
+ 
+     def had_argument_for(self, option):
+-        trial1 = '--' + option
++        trial1 = coredata.get_builtin_option_cmdline_name(option)
+         trial2 = '-D' + option
+         previous_is_plaind = False
+         for i in self.original_cmd_line_args:
+diff --git a/run_unittests.py b/run_unittests.py
+index 2a466db0..ff8d7c66 100755
+--- a/run_unittests.py
++++ b/run_unittests.py
+@@ -2026,6 +2026,7 @@ recommended as it can lead to undefined behaviour on some platforms''')
+         # Verify default values when passing no args
+         self.init(testdir)
+         obj = mesonbuild.coredata.load(self.builddir)
++        self.assertEqual(obj.builtins['default_library'].value, 'static')
+         self.assertEqual(obj.builtins['warning_level'].value, '1')
+         self.wipe()
+ 
+@@ -2059,6 +2060,15 @@ recommended as it can lead to undefined behaviour on some platforms''')
+             self.assertIn('passed as both', e.stderr)
+         self.wipe()
+ 
++        # --default-library should override default value from project()
++        self.init(testdir, extra_args=['--default-library=both'])
++        obj = mesonbuild.coredata.load(self.builddir)
++        self.assertEqual(obj.builtins['default_library'].value, 'both')
++        self.setconf('--default-library=shared')
++        obj = mesonbuild.coredata.load(self.builddir)
++        self.assertEqual(obj.builtins['default_library'].value, 'shared')
++        self.wipe()
++
+ 
+ class FailureTests(BasePlatformTests):
+     '''
+diff --git a/test cases/unit/30 command line/meson.build b/test cases/unit/30 command line/meson.build
+index 2ab21b6e..1006f49c 100644
+--- a/test cases/unit/30 command line/meson.build	
++++ b/test cases/unit/30 command line/meson.build	
+@@ -1 +1,3 @@
+-project('command line test', 'c')
++project('command line test', 'c',
++  default_options : ['default_library=static']
++)
+-- 
+2.17.0
+

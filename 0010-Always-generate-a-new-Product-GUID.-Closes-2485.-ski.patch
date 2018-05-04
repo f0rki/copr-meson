@@ -1,0 +1,38 @@
+From 95ec893ecc205d68e9f04468c6867b8791f3cbab Mon Sep 17 00:00:00 2001
+From: Jussi Pakkanen <jpakkane@gmail.com>
+Date: Sun, 29 Apr 2018 20:00:01 +0300
+Subject: [PATCH 10/16] Always generate a new Product GUID. Closes #2485. [skip
+ ci]
+
+We are taking some shortcuts here. The WiX documentation says that you
+should keep the Product GUID the same for "small and minor" upgrades
+but change it for major ones. These are not defined in any way and a
+change of version number might, or might not, warrant a guid
+update. For simplicity we will always regenerate the Product GUID.
+
+Again we find that naming things is difficult since "product" in
+everyday language would mean "the application/library/software" and
+all different versions of it. In MSI installer terminology it means
+something vague between the two.
+
+https://www.firegiant.com/wix/tutorial/upgrades-and-modularization/
+---
+ msi/createmsi.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/msi/createmsi.py b/msi/createmsi.py
+index 499f4b01..8a1bc5b4 100755
+--- a/msi/createmsi.py
++++ b/msi/createmsi.py
+@@ -38,7 +38,7 @@ class PackageGenerator:
+         self.product_name = 'Meson Build System'
+         self.manufacturer = 'The Meson Development Team'
+         self.version = coredata.version.replace('dev', '')
+-        self.guid = 'DF5B3ECA-4A31-43E3-8CE4-97FC8A97212E'
++        self.guid = '*'
+         self.update_guid = '141527EE-E28A-4D14-97A4-92E6075D28B2'
+         self.main_xml = 'meson.wxs'
+         self.main_o = 'meson.wixobj'
+-- 
+2.17.0
+
