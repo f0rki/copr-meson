@@ -3,30 +3,13 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.46.0
-Release:        2%{?dist}
+Version:        0.46.1
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-# Patches from 0.46 branch
-Patch0001:      0001-guess_external_link_dependencies-deduplicate-search-.patch
-Patch0002:      0002-CCompiler-Cache-result-of-get_library_dirs.patch
-Patch0003:      0003-New-argument-profile-self-for-profiling-performance.patch
-Patch0004:      0004-Install-generated-gdbus-header-with-old-glib-version.patch
-Patch0005:      0005-has_multi_link_arguments-Some-compilers-needs-Wl-fat.patch
-Patch0006:      0006-Add-test-to-show-issue.patch
-Patch0007:      0007-Allow-custom_target-do-depend-on-indexed-output-of-c.patch
-Patch0008:      0008-Fix-setting-c_args-and-friends-from-command-line.patch
-Patch0009:      0009-Made-depfixer-more-robust-on-OSX.-Closes-3493.patch
-Patch0010:      0010-Always-generate-a-new-Product-GUID.-Closes-2485.-ski.patch
-Patch0011:      0011-Remove-duplicated-definition-of-D-cmdline-arg.patch
-Patch0012:      0012-Fix-warnlevel-being-renamed-to-warning-level-in-late.patch
-Patch0013:      0013-Passing-default-library-both-should-override-project.patch
-Patch0014:      0014-Allow-required-false-for-OpenMP-dependency.patch
-Patch0015:      0015-Keep-separator-spaces-in-pkg-config-declarations.-Cl.patch
-Patch0016:      0016-pkgconfig-Don-t-expose-internal-libraries-in-.pc-fil.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -129,6 +112,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Thu May 17 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.46.1-1
+- Update to 0.46.1
+
 * Fri May 04 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.46.0-2
 - Backport upstream fixes
 
