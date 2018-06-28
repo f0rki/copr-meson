@@ -1,0 +1,27 @@
+From a87496addd9160300837aa50193f4798c6f1d251 Mon Sep 17 00:00:00 2001
+From: Christoph Reiter <reiter.christoph@gmail.com>
+Date: Mon, 28 May 2018 09:32:19 +0200
+Subject: [PATCH] Don't raise StopIteration in generators, no longer allowed
+ with Python 3.7. Fixes #3622
+
+Raising StopIteration from a generator has been deprecated with Python 3.5 and is now
+an error with Python 3.7: https://docs.python.org/3.8/library/exceptions.html#StopIteration
+
+Just use return instead.
+---
+ mesonbuild/compilers/compilers.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mesonbuild/compilers/compilers.py b/mesonbuild/compilers/compilers.py
+index 762e7c569..56a0ab2b8 100644
+--- a/mesonbuild/compilers/compilers.py
++++ b/mesonbuild/compilers/compilers.py
+@@ -796,7 +796,7 @@ def compile(self, code, extra_args=None, mode='link', want_output=False):
+                 mlog.debug('Cached compiler stdout:\n', p.stdo)
+                 mlog.debug('Cached compiler stderr:\n', p.stde)
+                 yield p
+-                raise StopIteration
++                return
+         try:
+             with tempfile.TemporaryDirectory() as tmpdirname:
+                 if isinstance(code, str):

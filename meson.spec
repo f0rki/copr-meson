@@ -4,12 +4,13 @@
 
 Name:           meson
 Version:        0.46.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+Patch0:         https://github.com/mesonbuild/meson/commit/a87496addd9160300837aa50193f4798c6f1d251.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -112,6 +113,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Thu Jun 28 2018 Miro Hrončok <mhroncok@redhat.com> - 0.46.1-3
+- Fix error on Python 3.7 (#1596230)
+
 * Mon Jun 18 2018 Miro Hrončok <mhroncok@redhat.com> - 0.46.1-2
 - Rebuilt for Python 3.7
 
