@@ -3,14 +3,13 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.46.1
-Release:        3%{?dist}
+Version:        0.47.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-Patch0:         https://github.com/mesonbuild/meson/commit/a87496addd9160300837aa50193f4798c6f1d251.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -113,6 +112,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{rpmmacrodir}/macros.%{name}
 
 %changelog
+* Mon Jul 02 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.0-1
+- Update to 0.47.0
+
 * Thu Jun 28 2018 Miro Hrončok <mhroncok@redhat.com> - 0.46.1-3
 - Fix error on Python 3.7 (#1596230)
 
