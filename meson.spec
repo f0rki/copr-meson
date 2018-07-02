@@ -110,6 +110,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_mandir}/man1/%{name}test.1*
 %{_mandir}/man1/wraptool.1*
 %{rpmmacrodir}/macros.%{name}
+%dir %{_datadir}/polkit-1
+%dir %{_datadir}/polkit-1/actions
+%{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
 * Mon Jul 02 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.0-1
