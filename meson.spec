@@ -4,7 +4,7 @@
 
 Name:           meson
 Version:        0.47.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -12,9 +12,12 @@ URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
 
 # https://github.com/mesonbuild/meson/pull/3930
-Patch0001:      0001-rpm-pass-auto-features-enabled-skip-ci.patch
-Patch0002:      0002-rpm-use-set_build_flags-skip-ci.patch
-Patch0003:      0003-rpm-use-shrink-skip-ci.patch
+Patch0001:      0001-rpm-use-set_build_flags-skip-ci.patch
+Patch0002:      0002-rpm-use-shrink-skip-ci.patch
+Patch0003:      0003-rpm-pass-auto-features-enabled-skip-ci.patch
+# We do not want this yet
+# https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/SVURE6JRDBTFKHJAPFBYRZ62JQ56OLEG/
+Patch0004:      0004-rpm-set-auto-features-auto.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -121,6 +124,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Tue Jul 24 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.1-4
+- Don't sneak auto-features patch yet
+
 * Tue Jul 24 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.1-3
 - Macros improvements
 

@@ -1,7 +1,7 @@
-From a1b22cae59c0ac8e0297dd42fad3a4edb6354071 Mon Sep 17 00:00:00 2001
+From 448479e7d6822217e2c363f65911613bf026fbd9 Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Mon, 23 Jul 2018 19:29:19 +0200
-Subject: [PATCH 3/3] =?UTF-8?q?rpm:=20use=20%{shrink=E2=80=A6}=20[skip=20c?=
+Subject: [PATCH 2/4] =?UTF-8?q?rpm:=20use=20%{shrink=E2=80=A6}=20[skip=20c?=
  =?UTF-8?q?i]?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -11,14 +11,14 @@ Make logs look better!
 
 Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 ---
- data/macros.meson | 38 +++++++++++++++++++-------------------
- 1 file changed, 19 insertions(+), 19 deletions(-)
+ data/macros.meson | 36 ++++++++++++++++++------------------
+ 1 file changed, 18 insertions(+), 18 deletions(-)
 
 diff --git a/data/macros.meson b/data/macros.meson
-index acd3af93..4a8a3ca4 100644
+index 7be47895..a6a90525 100644
 --- a/data/macros.meson
 +++ b/data/macros.meson
-@@ -4,25 +4,25 @@
+@@ -3,24 +3,24 @@
  
  %meson \
      %set_build_flags \
@@ -38,7 +38,6 @@ index acd3af93..4a8a3ca4 100644
 -        --localstatedir=%{_localstatedir}   \\\
 -        --sharedstatedir=%{_sharedstatedir} \\\
 -        --wrap-mode=%{__meson_wrap_mode}    \\\
--        --auto-features=%{__meson_auto_features} \\\
 -        %{_vpath_srcdir} %{_vpath_builddir} \\\
 -        %{nil}
 +    %{shrink:%{__meson} \
@@ -57,7 +56,6 @@ index acd3af93..4a8a3ca4 100644
 +        --localstatedir=%{_localstatedir} \
 +        --sharedstatedir=%{_sharedstatedir} \
 +        --wrap-mode=%{__meson_wrap_mode} \
-+        --auto-features=%{__meson_auto_features} \
 +        %{_vpath_srcdir} %{_vpath_builddir} \
 +	%{nil}}
  
