@@ -4,12 +4,17 @@
 
 Name:           meson
 Version:        0.47.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+
+# https://github.com/mesonbuild/meson/pull/3930
+Patch0001:      0001-rpm-pass-auto-features-enabled-skip-ci.patch
+Patch0002:      0002-rpm-use-set_build_flags-skip-ci.patch
+Patch0003:      0003-rpm-use-shrink-skip-ci.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -42,8 +47,10 @@ BuildRequires:  gmock-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  vala
 # In recent versions it's merged into vala
-%if (0%{?fedora} && 0%{?fedora} <= 24) || (0%{?rhel} && 0%{?rhel} <= 7)
+%if (0%{?rhel} && 0%{?rhel} <= 7)
 BuildRequires:  vala-tools
+%else
+BuildRequires:  python3-gobject-base
 %endif
 BuildRequires:  wxGTK3-devel
 BuildRequires:  flex
@@ -56,9 +63,6 @@ BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(glib-sharp-2.0)
 BuildRequires:  pkgconfig(gobject-introspection-1.0)
-%if ! 0%{?rhel} || 0%{?rhel} > 7
-BuildRequires:  python3-gobject-base
-%endif
 BuildRequires:  gtk-doc
 BuildRequires:  itstool
 BuildRequires:  pkgconfig(zlib)
@@ -81,6 +85,8 @@ unit tests, coverage reports, Valgrind, CCache and the like.
 %autosetup -p1
 # Remove MPI tests for now because it is complicated to run
 rm -rf "test cases/frameworks/17 mpi"
+# Macro should not change when we are redefining bindir
+sed -i -e "/^%%__meson /s| .*$| %{_bindir}/%{name}|" data/macros.%{name}
 
 %build
 %py3_build
@@ -115,6 +121,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Tue Jul 24 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.1-3
+- Macros improvements
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.47.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 

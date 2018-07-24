@@ -1,0 +1,32 @@
+From f40355d8a1c12504d2a4d7494d1c9c0b92558d9a Mon Sep 17 00:00:00 2001
+From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+Date: Mon, 23 Jul 2018 19:25:30 +0200
+Subject: [PATCH 2/3] rpm: use %set_build_flags [skip ci]
+
+It has better name and should do the trick.
+
+Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+---
+ data/macros.meson | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/data/macros.meson b/data/macros.meson
+index 31f77951..acd3af93 100644
+--- a/data/macros.meson
++++ b/data/macros.meson
+@@ -3,11 +3,7 @@
+ %__meson_auto_features enabled
+ 
+ %meson \
+-    export CFLAGS="${CFLAGS:-%__global_cflags}"       \
+-    export CXXFLAGS="${CXXFLAGS:-%__global_cxxflags}" \
+-    export FFLAGS="${FFLAGS:-%__global_fflags}"       \
+-    export FCFLAGS="${FCFLAGS:-%__global_fcflags}"    \
+-    export LDFLAGS="${LDFLAGS:-%__global_ldflags}"    \
++    %set_build_flags \
+     %{__meson}                              \\\
+         --buildtype=plain                   \\\
+         --prefix=%{_prefix}                 \\\
+-- 
+2.18.0
+
