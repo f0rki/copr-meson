@@ -1,11 +1,12 @@
-From 4750aba45d940feef0aa29fb2258fe69f161fb65 Mon Sep 17 00:00:00 2001
+From 48e8347b4755800287aa653a4d08b89d86bfda52 Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Mon, 23 Jul 2018 19:25:30 +0200
-Subject: [PATCH 1/4] rpm: use %set_build_flags [skip ci]
+Subject: [PATCH 1/5] rpm: use %set_build_flags [skip ci]
 
 It has better name and should do the trick.
 
 Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+(cherry picked from commit 99070beec4a6b1ded499405025104483534f97e4)
 ---
  data/macros.meson | 6 +-----
  1 file changed, 1 insertion(+), 5 deletions(-)

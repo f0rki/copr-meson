@@ -1,0 +1,29 @@
+From 57382aad45504627649e6412fea62249e65b533e Mon Sep 17 00:00:00 2001
+From: Xavier Claessens <xavier.claessens@collabora.com>
+Date: Wed, 25 Jul 2018 09:54:48 -0400
+Subject: [PATCH 5/5] UserFeatureOption: Default to 'auto' when no value
+ specified
+
+Closes #3938.
+
+(cherry picked from commit 5f9fda4accc0b1cf6952877533c04995d701e499)
+---
+ mesonbuild/optinterpreter.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mesonbuild/optinterpreter.py b/mesonbuild/optinterpreter.py
+index 94efbcf9..8967a53b 100644
+--- a/mesonbuild/optinterpreter.py
++++ b/mesonbuild/optinterpreter.py
+@@ -121,7 +121,7 @@ def string_array_parser(name, description, kwargs):
+ def FeatureParser(name, description, kwargs):
+     return coredata.UserFeatureOption(name,
+                                       description,
+-                                      kwargs.get('value', 'enabled'),
++                                      kwargs.get('value', 'auto'),
+                                       yielding=kwargs.get('yield', coredata.default_yielding))
+ 
+ option_types = {'string': StringParser,
+-- 
+2.18.0
+

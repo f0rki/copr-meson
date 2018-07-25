@@ -1,11 +1,12 @@
-From e6a4aeab0f70b0149fd4021ed875f4a60e1c5c64 Mon Sep 17 00:00:00 2001
+From 5791529fdfce3e962a2d857c807e082e051c4e1d Mon Sep 17 00:00:00 2001
 From: Igor Gnatenko <i.gnatenko.brain@gmail.com>
 Date: Mon, 23 Jul 2018 19:24:33 +0200
-Subject: [PATCH 3/4] rpm: pass --auto-features=enabled [skip ci]
+Subject: [PATCH 3/5] rpm: pass --auto-features=enabled [skip ci]
 
 We really want to be explicit.
 
 Signed-off-by: Igor Gnatenko <i.gnatenko.brain@gmail.com>
+(cherry picked from commit 1515fca2d9d4dcc8c9c98689421e69517444c05e)
 ---
  data/macros.meson | 2 ++
  1 file changed, 2 insertions(+)
