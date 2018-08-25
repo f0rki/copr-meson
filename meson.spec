@@ -3,8 +3,8 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.47.1
-Release:        5%{?dist}
+Version:        0.47.2
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -14,8 +14,6 @@ Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%
 Patch0001:      0001-rpm-use-set_build_flags-skip-ci.patch
 Patch0002:      0002-rpm-use-shrink-skip-ci.patch
 Patch0003:      0003-rpm-pass-auto-features-enabled-skip-ci.patch
-Patch0004:      0004-Add-a-feature-new-entry-for-UserFeatureOption.patch
-Patch0005:      0005-UserFeatureOption-Default-to-auto-when-no-value-spec.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -122,6 +120,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Sat Aug 25 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.2-1
+- Update to 0.47.2
+
 * Wed Jul 25 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.1-5
 - Backport more patches for "feature" option type
 
