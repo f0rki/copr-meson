@@ -18,8 +18,8 @@ Patch0003:      0003-rpm-pass-auto-features-enabled-skip-ci.patch
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
 
-BuildRequires:  python%{python3_pkgversion}-devel
-BuildRequires:  python%{python3_pkgversion}-setuptools
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
 %if %{with check}
 BuildRequires:  ninja-build
 # Various languages
@@ -32,25 +32,17 @@ BuildRequires:  gcc-objc++
 BuildRequires:  java-devel
 BuildRequires:  mono-core mono-devel
 BuildRequires:  rust
-# No ldc as of RHEL7 and on non-ldc arches
-%if ! 0%{?rhel} || 0%{?rhel} > 7
 # Since the build is noarch, we can't use %%ifarch
 #%%ifarch %%{ldc_arches}
 #BuildRequires:  ldc
 #%%endif
-%endif
 # Various libs support
 BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  vala
-# In recent versions it's merged into vala
-%if (0%{?rhel} && 0%{?rhel} <= 7)
-BuildRequires:  vala-tools
-%else
 BuildRequires:  python3-gobject-base
-%endif
 BuildRequires:  wxGTK3-devel
 BuildRequires:  flex
 BuildRequires:  bison
@@ -97,7 +89,7 @@ install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
 %if %{with check}
 %check
 export MESON_PRINT_TEST_OUTPUT=1
-%{__python3} ./run_tests.py %{?rhel:|| :}
+%{__python3} ./run_tests.py
 %endif
 
 %files
