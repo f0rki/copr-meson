@@ -91,17 +91,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %files
 %license COPYING
 %{_bindir}/%{name}
-%{_bindir}/%{name}conf
-%{_bindir}/%{name}introspect
-%{_bindir}/%{name}test
-%{_bindir}/wraptool
 %{python3_sitelib}/%{libname}/
 %{python3_sitelib}/%{name}-*.egg-info/
 %{_mandir}/man1/%{name}.1*
-%{_mandir}/man1/%{name}conf.1*
-%{_mandir}/man1/%{name}introspect.1*
-%{_mandir}/man1/%{name}test.1*
-%{_mandir}/man1/wraptool.1*
 %{rpmmacrodir}/macros.%{name}
 %dir %{_datadir}/polkit-1
 %dir %{_datadir}/polkit-1/actions
