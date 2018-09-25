@@ -3,17 +3,13 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.47.2
+Version:        0.48.0
 Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            http://mesonbuild.com/
 Source0:        https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
-
-Patch0001:      0001-rpm-use-set_build_flags-skip-ci.patch
-Patch0002:      0002-rpm-use-shrink-skip-ci.patch
-Patch0003:      0003-rpm-pass-auto-features-enabled-skip-ci.patch
 
 BuildArch:      noarch
 Obsoletes:      %{name}-gui < 0.31.0-3
@@ -112,6 +108,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Tue Sep 25 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.48.0-1
+- Update to 0.48.0
+
 * Sat Aug 25 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.47.2-1
 - Update to 0.47.2
 
