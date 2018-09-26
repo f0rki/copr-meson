@@ -4,7 +4,7 @@
 
 Name:           meson
 Version:        0.48.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -16,6 +16,7 @@ Obsoletes:      %{name}-gui < 0.31.0-3
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
+Requires:       python3-setuptools
 %if %{with check}
 BuildRequires:  ninja-build
 # Various languages
@@ -100,6 +101,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Wed Sep 26 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.48.0-2
+- Add missing dependency on setuptools
+
 * Tue Sep 25 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.48.0-1
 - Update to 0.48.0
 
