@@ -3,8 +3,8 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.48.0
-Release:        2%{?dist}
+Version:        0.48.1
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -101,6 +101,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Sun Oct 21 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.48.1-1
+- Update to 0.48.1
+
 * Wed Sep 26 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.48.0-2
 - Add missing dependency on setuptools
 
