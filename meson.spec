@@ -4,7 +4,7 @@
 
 Name:           meson
 Version:        0.49.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -101,6 +101,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.49.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Wed Jan 23 2019 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.49.1-1
 - Update to 0.49.1
 
