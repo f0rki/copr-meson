@@ -1,7 +1,5 @@
 %global libname mesonbuild
 
-%bcond_with check
-
 Name:           meson
 Version:        0.50.0
 Release:        3%{?dist}
@@ -19,50 +17,6 @@ Obsoletes:      %{name}-gui < 0.31.0-3
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 Requires:       python3-setuptools
-%if %{with check}
-BuildRequires:  ninja-build
-# Various languages
-BuildRequires:  gcc
-BuildRequires:  libasan
-BuildRequires:  gcc-c++
-BuildRequires:  gcc-gfortran
-BuildRequires:  gcc-objc
-BuildRequires:  gcc-objc++
-BuildRequires:  java-devel
-BuildRequires:  mono-core mono-devel
-BuildRequires:  rust
-# Since the build is noarch, we can't use %%ifarch
-#%%ifarch %%{ldc_arches}
-#BuildRequires:  ldc
-#%%endif
-# Various libs support
-BuildRequires:  boost-devel
-BuildRequires:  gtest-devel
-BuildRequires:  gmock-devel
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  vala
-BuildRequires:  python3-gobject-base
-BuildRequires:  wxGTK3-devel
-BuildRequires:  flex
-BuildRequires:  bison
-BuildRequires:  gettext
-BuildRequires:  gnustep-base-devel
-BuildRequires:  %{_bindir}/gnustep-config
-BuildRequires:  git-core
-BuildRequires:  pkgconfig(protobuf)
-BuildRequires:  pkgconfig(glib-2.0)
-BuildRequires:  pkgconfig(glib-sharp-2.0)
-BuildRequires:  pkgconfig(gobject-introspection-1.0)
-BuildRequires:  gtk-doc
-BuildRequires:  itstool
-BuildRequires:  pkgconfig(zlib)
-BuildRequires:  python%{python3_pkgversion}-Cython
-BuildRequires:  pkgconfig(sdl2)
-BuildRequires:  %{_bindir}/pcap-config
-BuildRequires:  pkgconfig(vulkan)
-BuildRequires:  llvm-devel
-BuildRequires:  cups-devel
-%endif
 Requires:       ninja-build
 
 %description
@@ -73,8 +27,6 @@ unit tests, coverage reports, Valgrind, CCache and the like.
 
 %prep
 %autosetup -p1
-# Remove MPI tests for now because it is complicated to run
-rm -rf "test cases/frameworks/17 mpi"
 # Macro should not change when we are redefining bindir
 sed -i -e "/^%%__meson /s| .*$| %{_bindir}/%{name}|" data/macros.%{name}
 
@@ -83,13 +35,7 @@ sed -i -e "/^%%__meson /s| .*$| %{_bindir}/%{name}|" data/macros.%{name}
 
 %install
 %py3_install
-install -Dpm0644 data/macros.%{name} %{buildroot}%{rpmmacrodir}/macros.%{name}
-
-%if %{with check}
-%check
-export MESON_PRINT_TEST_OUTPUT=1
-%{__python3} ./run_tests.py
-%endif
+install -Dpm0644 -t %{buildroot}%{rpmmacrodir} data/macros.%{name}
 
 %files
 %license COPYING
