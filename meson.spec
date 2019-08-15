@@ -2,7 +2,7 @@
 
 Name:           meson
 Version:        0.51.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -47,6 +47,9 @@ install -Dpm0644 -t %{buildroot}%{rpmmacrodir} data/macros.%{name}
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Thu Aug 15 2019 Miro Hrončok <mhroncok@redhat.com> - 0.51.1-3
+- Rebuilt for Python 3.8
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.51.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
