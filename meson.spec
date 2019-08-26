@@ -1,8 +1,8 @@
 %global libname mesonbuild
 
 Name:           meson
-Version:        0.51.1
-Release:        3%{?dist}
+Version:        0.51.2
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -47,6 +47,9 @@ install -Dpm0644 -t %{buildroot}%{rpmmacrodir} data/macros.%{name}
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Mon Aug 26 2019 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.51.2-1
+- Update to 0.51.2
+
 * Thu Aug 15 2019 Miro Hrončok <mhroncok@redhat.com> - 0.51.1-3
 - Rebuilt for Python 3.8
 
