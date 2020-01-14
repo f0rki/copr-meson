@@ -22,6 +22,8 @@ Requires:       ninja-build
 
 %if %{with check}
 BuildRequires:  ninja-build
+# Some tests expect the unversioned executable
+BuildRequires:  /usr/bin/python
 # Various languages
 BuildRequires:  gcc
 BuildRequires:  libasan
