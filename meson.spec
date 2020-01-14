@@ -32,6 +32,7 @@ BuildRequires:  gcc-gfortran
 BuildRequires:  gcc-objc
 BuildRequires:  gcc-objc++
 BuildRequires:  java-devel
+BuildRequires:  libomp-devel
 BuildRequires:  mono-core mono-devel
 BuildRequires:  rust
 # Since the build is noarch, we can't use %%ifarch
@@ -43,6 +44,8 @@ BuildRequires:  boost-devel
 BuildRequires:  gtest-devel
 BuildRequires:  gmock-devel
 BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qtbase-private-devel
+BuildRequires:  qt5-linguist
 BuildRequires:  vala
 BuildRequires:  python3-gobject-base
 BuildRequires:  wxGTK3-devel
