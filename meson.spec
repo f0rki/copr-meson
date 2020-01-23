@@ -90,6 +90,8 @@ install -Dpm0644 -t %{buildroot}%{rpmmacrodir} data/macros.%{name}
 
 %if %{with check}
 %check
+# Remove Boost tests for now, because it requires Python 2
+rm -rf "test cases/frameworks/1 boost"
 # Remove MPI tests for now because it is complicated to run
 rm -rf "test cases/frameworks/17 mpi"
 export MESON_PRINT_TEST_OUTPUT=1
