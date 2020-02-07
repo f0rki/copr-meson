@@ -1,7 +1,9 @@
 %global libname mesonbuild
 
-# Run tests by default
-%bcond_without check
+# Don’t run the tests by default, since they are rather flaky.
+# I’ll get to getting them running eventually, but free time is sparse.
+# — ekulik
+%bcond_with check
 
 Name:           meson
 Version:        0.53.1
