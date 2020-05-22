@@ -7,7 +7,7 @@
 
 Name:           meson
 Version:        0.54.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -112,6 +112,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Fri May 22 2020 Miro Hrončok <mhroncok@redhat.com> - 0.54.2-2
+- Rebuilt for Python 3.9
+
 * Fri May 15 2020 Kalev Lember <klember@redhat.com> - 0.54.2-1
 - Update to 0.54.2
 
