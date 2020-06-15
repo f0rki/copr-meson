@@ -6,8 +6,8 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.54.2
-Release:        3%{?dist}
+Version:        0.54.3
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -117,6 +117,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Mon Jun 15 2020 Kalev Lember <klember@redhat.com> - 0.54.3-1
+- Update to 0.54.3
+
 * Mon Jun 15 19:54:47 CEST 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.2-3
 - Switch to meson compile / meson install
 
