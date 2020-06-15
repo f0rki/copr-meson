@@ -1,0 +1,40 @@
+From 9f2fa65679038c4b9a78191060a79323e827f0d2 Mon Sep 17 00:00:00 2001
+From: Igor Raits <i.gnatenko.brain@gmail.com>
+Date: Mon, 15 Jun 2020 19:36:47 +0200
+Subject: [PATCH 2/2] macros.meson: Switch to meson compile / install
+
+Signed-off-by: Igor Raits <i.gnatenko.brain@gmail.com>
+---
+ data/macros.meson | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/data/macros.meson b/data/macros.meson
+index 25601aad3..8a66c9657 100644
+--- a/data/macros.meson
++++ b/data/macros.meson
+@@ -22,13 +22,19 @@
+         --wrap-mode=%{__meson_wrap_mode} \
+         --auto-features=%{__meson_auto_features} \
+         %{_vpath_srcdir} %{_vpath_builddir} \
+-	%{nil}}
++        %{nil}}
+ 
+ %meson_build \
+-    %ninja_build -C %{_vpath_builddir}
++    %{shrink:%{__meson} compile \
++        -C %{_vpath_builddir} \
++        -j %{_smp_build_ncpus} \
++        %{nil}}
+ 
+ %meson_install \
+-    %ninja_install -C %{_vpath_builddir}
++    %{shrink:DESTDIR=%{buildroot} %{__meson} install \
++        -C %{_vpath_builddir} \
++        --no-rebuild \
++        %{nil}}
+ 
+ %meson_test \
+     %{shrink:%{__meson} test \
+-- 
+2.27.0
+

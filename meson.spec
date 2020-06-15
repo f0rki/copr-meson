@@ -7,7 +7,7 @@
 
 Name:           meson
 Version:        0.54.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -78,6 +78,11 @@ productivity. It aims to do this by providing simple, out-of-the-box
 support for modern software development tools and practices, such as
 unit tests, coverage reports, Valgrind, CCache and the like.
 
+%patchlist
+# https://github.com/mesonbuild/meson/pull/7329
+0001-macros.meson-Switch-to-_smp_build_ncpus.patch
+0002-macros.meson-Switch-to-meson-compile-install.patch
+
 %prep
 %autosetup -p1
 # Macro should not change when we are redefining bindir
@@ -112,6 +117,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Mon Jun 15 19:54:47 CEST 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.2-3
+- Switch to meson compile / meson install
+
 * Fri May 22 2020 Miro Hrončok <mhroncok@redhat.com> - 0.54.2-2
 - Rebuilt for Python 3.9
 
