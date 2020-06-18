@@ -7,7 +7,7 @@
 
 Name:           meson
 Version:        0.54.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -82,6 +82,8 @@ unit tests, coverage reports, Valgrind, CCache and the like.
 # https://github.com/mesonbuild/meson/pull/7329
 0001-macros.meson-Switch-to-_smp_build_ncpus.patch
 0002-macros.meson-Switch-to-meson-compile-install.patch
+# https://github.com/mesonbuild/meson/pull/7353
+0003-mcompile-Add-verbose-mode.patch
 
 %prep
 %autosetup -p1
@@ -117,6 +119,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Thu Jun 18 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.3-2
+- Use verbose mode for meson compile
+
 * Mon Jun 15 2020 Kalev Lember <klember@redhat.com> - 0.54.3-1
 - Update to 0.54.3
 
