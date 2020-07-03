@@ -6,16 +6,15 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.54.3
-Release:        2%{?dist}
+Version:        0.55.0~rc1
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://mesonbuild.com/
-Source:         https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+Source:         https://github.com/mesonbuild/meson/releases/download/%{version_no_tilde .}/meson-%{version_no_tilde %{quote:}}.tar.gz
 
 BuildArch:      noarch
-Obsoletes:      %{name}-gui < 0.31.0-3
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -78,15 +77,8 @@ productivity. It aims to do this by providing simple, out-of-the-box
 support for modern software development tools and practices, such as
 unit tests, coverage reports, Valgrind, CCache and the like.
 
-%patchlist
-# https://github.com/mesonbuild/meson/pull/7329
-0001-macros.meson-Switch-to-_smp_build_ncpus.patch
-0002-macros.meson-Switch-to-meson-compile-install.patch
-# https://github.com/mesonbuild/meson/pull/7353
-0003-mcompile-Add-verbose-mode.patch
-
 %prep
-%autosetup -p1
+%autosetup -p1 -n meson-%{version_no_tilde %{quote:}}
 # Macro should not change when we are redefining bindir
 sed -i -e "/^%%__meson /s| .*$| %{_bindir}/%{name}|" data/macros.%{name}
 
@@ -119,6 +111,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Fri Jul 03 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.55.0~rc1-1
+- Update to 0.55.0rc1
+
 * Thu Jun 18 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.3-2
 - Use verbose mode for meson compile
 
