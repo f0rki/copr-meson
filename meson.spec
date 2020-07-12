@@ -6,16 +6,15 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.54.3
+Version:        0.55.0
 Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://mesonbuild.com/
-Source:         https://github.com/mesonbuild/meson/archive/%{version}/%{name}-%{version}.tar.gz
+Source:         https://github.com/mesonbuild/meson/releases/download/%{version_no_tilde .}/meson-%{version_no_tilde %{quote:}}.tar.gz
 
 BuildArch:      noarch
-Obsoletes:      %{name}-gui < 0.31.0-3
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -79,7 +78,7 @@ support for modern software development tools and practices, such as
 unit tests, coverage reports, Valgrind, CCache and the like.
 
 %prep
-%autosetup -p1
+%autosetup -p1 -n meson-%{version_no_tilde %{quote:}}
 # Macro should not change when we are redefining bindir
 sed -i -e "/^%%__meson /s| .*$| %{_bindir}/%{name}|" data/macros.%{name}
 
@@ -112,8 +111,26 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Sun Jul 12 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.55.0-1
+- Update to 0.55.0
+
+* Mon Jul 06 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.55.0~rc2-1
+- Update to 0.55.0rc2
+
+* Fri Jul 03 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.55.0~rc1-1
+- Update to 0.55.0rc1
+
+* Thu Jun 18 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.3-2
+- Use verbose mode for meson compile
+
 * Mon Jun 15 2020 Kalev Lember <klember@redhat.com> - 0.54.3-1
 - Update to 0.54.3
+
+* Mon Jun 15 19:54:47 CEST 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.2-3
+- Switch to meson compile / meson install
+
+* Fri May 22 2020 Miro Hrončok <mhroncok@redhat.com> - 0.54.2-2
+- Rebuilt for Python 3.9
 
 * Fri May 15 2020 Kalev Lember <klember@redhat.com> - 0.54.2-1
 - Update to 0.54.2
