@@ -132,7 +132,7 @@ export MESON_PRINT_TEST_OUTPUT=1
 * Mon Jun 15 2020 Kalev Lember <klember@redhat.com> - 0.54.3-1
 - Update to 0.54.3
 
-* Mon Jun 15 19:54:47 CEST 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.2-3
+* Mon Jun 15 2020 Igor Raits <ignatenkobrain@fedoraproject.org> - 0.54.2-3
 - Switch to meson compile / meson install
 
 * Fri May 22 2020 Miro Hrončok <mhroncok@redhat.com> - 0.54.2-2
