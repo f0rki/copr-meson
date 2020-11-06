@@ -7,12 +7,13 @@
 
 Name:           meson
 Version:        0.55.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
 URL:            https://mesonbuild.com/
 Source:         https://github.com/mesonbuild/meson/releases/download/%{version_no_tilde .}/meson-%{version_no_tilde %{quote:}}.tar.gz
+Patch0:         %{name}-gcc11.patch
 
 BuildArch:      noarch
 
@@ -111,6 +112,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Fri Nov 06 2020 Jeff Law <law@redhat.com> - 0.55.3-2
+- Avoid bogus volatile in gnome modules support code caught by gcc-11
+
 * Fri Sep 11 2020 Kalev Lember <klember@redhat.com> - 0.55.3-1
 - Update to 0.55.3
 
