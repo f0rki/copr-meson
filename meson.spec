@@ -6,8 +6,8 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.55.3
-Release:        2%{?dist}
+Version:        0.56.0
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -64,6 +64,7 @@ BuildRequires:  pkgconfig(gobject-introspection-1.0)
 BuildRequires:  gtk-doc
 BuildRequires:  itstool
 BuildRequires:  pkgconfig(zlib)
+BuildRequires:  zlib-static
 BuildRequires:  python3dist(cython)
 BuildRequires:  pkgconfig(sdl2)
 BuildRequires:  %{_bindir}/pcap-config
@@ -112,6 +113,9 @@ export MESON_PRINT_TEST_OUTPUT=1
 %{_datadir}/polkit-1/actions/com.mesonbuild.install.policy
 
 %changelog
+* Tue Nov 10 2020 Zbigniew Jędrzejewski-Szmek <zbyszek@in.waw.pl> - 0.56.0-1
+- Update to latest version (#1889242)
+
 * Fri Nov 06 2020 Jeff Law <law@redhat.com> - 0.55.3-2
 - Avoid bogus volatile in gnome modules support code caught by gcc-11
 
