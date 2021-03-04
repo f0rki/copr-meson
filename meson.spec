@@ -6,8 +6,8 @@
 %bcond_with check
 
 Name:           meson
-Version:        0.56.2
-Release:        2%{?dist}
+Version:        0.57.1
+Release:        1%{?dist}
 Summary:        High productivity build system
 
 License:        ASL 2.0
@@ -15,7 +15,7 @@ URL:            https://mesonbuild.com/
 Source:         https://github.com/mesonbuild/meson/releases/download/%{version_no_tilde .}/meson-%{version_no_tilde %{quote:}}.tar.gz
 Patch0:         %{name}-gcc11.patch
 # https://github.com/mesonbuild/meson/pull/8332
-Patch1:         %{name}-python3.10.patch
+#Patch1:         %{name}-python3.10.patch
 
 BuildArch:      noarch
 
