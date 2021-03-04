@@ -7,7 +7,8 @@
 
 Name:           meson
 Version:        0.57.1
-Release:        1%{?dist}
+#Release:        1%{?dist}
+Release:        0.1
 Summary:        High productivity build system
 
 License:        ASL 2.0
